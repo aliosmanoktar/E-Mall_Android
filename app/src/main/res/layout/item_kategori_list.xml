@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/item_kategori_list.layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/item_kategori_list.back"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_left"/>
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/item_kategori_list.Adi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kategori"
+            android:textSize="18sp"
+            />
+
+        <ImageView
+            android:id="@+id/item_kategori_list.Alt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/navigationBackground"
+            android:src="@drawable/ic_arrow_right"
+            />
+    </LinearLayout>
+</RelativeLayout>

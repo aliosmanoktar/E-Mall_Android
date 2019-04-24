@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">E Mall</string>
+    <string-array name="ana_ekran_navigation_title">
+        <item>Ana Ekran</item>
+        <item>Kategoriler</item>
+        <item>Hesabım</item>
+    </string-array>
+    <string-array name="login_navigation_title">
+        <item>Giriş Yap</item>
+        <item>Kayıt Ol</item>
+    </string-array>
+</resources>

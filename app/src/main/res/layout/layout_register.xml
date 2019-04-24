@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <!--Ad Soyasd Eposta Kullanı Adı Şifre Tekrar Şifre Doğum Günü Cinsiyet Sözleşme -->
+    <LinearLayout
+
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/register_layout.Ad"
+            android:layout_margin="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ad"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="Kullanıcı Adı"
+            app:met_floatingLabelTextColor="@color/navigatonSelectColor" />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/register_layout.Soyad"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Soyadı"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="Kullanıcı Adı"
+            app:met_floatingLabelTextColor="@color/navigatonSelectColor" />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/register_layout.KullaniciAdi"
+            android:layout_margin="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kullanıcı Adı"
+            app:met_maxCharacters="12"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="Kullanıcı Adı"
+            app:met_floatingLabelTextColor="@color/navigatonSelectColor" />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/register_layout.Eposta"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="E Posta"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="Kullanıcı Adı"
+            app:met_floatingLabelTextColor="@color/navigatonSelectColor" />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/register_layout.Sifre"
+            android:layout_margin="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Şifre"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="Kullanıcı Adı"
+            app:met_floatingLabelTextColor="@color/navigatonSelectColor" />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/register_layout.SifreTekrar"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Şifre"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="Kullanıcı Adı"
+            app:met_floatingLabelTextColor="@color/navigatonSelectColor" />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/register_layout.Telefon"
+            android:layout_margin="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telefon"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="Kullanıcı Adı"
+            app:met_floatingLabelTextColor="@color/navigatonSelectColor" />
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/register_layout.Cinsiyet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/register_layout.Register"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kayıt Ol"
+            android:layout_marginBottom="30dp"
+            />
+    </LinearLayout>
+</ScrollView>

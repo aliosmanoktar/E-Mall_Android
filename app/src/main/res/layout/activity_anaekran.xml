@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    tools:context=".Activity.AnaEkran">
+
+    <FrameLayout
+        android:id="@+id/ana_ekran.framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ana_ekran.navigation"/>
+
+    <com.gigamole.navigationtabstrip.NavigationTabStrip
+        android:id="@+id/ana_ekran.navigation"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/navigationBackground"
+        app:nts_color="@color/navigatonSelectColor"
+        app:nts_size="15sp"
+        app:nts_titles="@array/ana_ekran_navigation_title"
+        app:nts_type="line"
+        app:nts_corners_radius="10dp"
+        app:nts_animation_duration="500"
+        app:nts_active_color="@color/navigatonSelectColor"
+        app:nts_inactive_color="@color/navigationInactive"/>
+    <com.github.clans.fab.FloatingActionMenu
+        android:layout_above="@id/ana_ekran.navigation"
+        android:id="@+id/ana_ekran.fab_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        fab:menu_icon="@drawable/ic_alisveris"
+        fab:menu_fab_size="normal"
+        fab:menu_showShadow="false"
+        fab:menu_shadowColor="#66000000"
+        fab:menu_colorNormal="@color/navigatonSelectColor"
+        fab:menu_colorPressed="#EE6D62"
+        fab:menu_colorRipple="#99FFFFFF"
+        fab:menu_animationDelayPerItem="50"
+        fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+        fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+        fab:menu_labels_textColor="@color/colorWhite"
+        fab:menu_labels_textSize="14sp"
+        fab:menu_labels_cornerRadius="5dp"
+        fab:menu_labels_colorNormal="#333333"
+        fab:menu_labels_colorPressed="#444444"
+        fab:menu_labels_colorRipple="#66FFFFFF"
+        >
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/ana_ekran.fab_menu_item_sepet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_sepet"
+            fab:fab_size="mini"
+            fab:fab_label="Sepet" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/ana_ekran.fab_menu_item_favoriler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_favorite"
+            fab:fab_size="mini"
+            fab:fab_label="Favoriler" />
+    </com.github.clans.fab.FloatingActionMenu>
+</RelativeLayout>

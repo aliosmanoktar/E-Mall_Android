@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Activity.Login_Activity">
+
+    <com.gigamole.navigationtabstrip.NavigationTabStrip
+        android:id="@+id/login_ekran.navigation"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/navigationBackground"
+        app:nts_color="@color/navigatonSelectColor"
+        app:nts_size="15sp"
+        app:nts_titles="@array/login_navigation_title"
+        app:nts_type="line"
+        app:nts_corners_radius="10dp"
+        app:nts_animation_duration="500"
+        app:nts_active_color="@color/navigatonSelectColor"
+        app:nts_inactive_color="@color/navigationInactive"/>
+    <FrameLayout
+        android:id="@+id/login_ekran.framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/login_ekran.navigation" />
+
+
+</RelativeLayout>
