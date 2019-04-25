@@ -3,19 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:id="@+id/item_urun_list.layout">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RelativeLayout
-            android:layout_width="150dp"
-            android:layout_height="150dp">
+            android:layout_width="125dp"
+            android:layout_height="125dp">
             <ImageView
                 android:id="@+id/item_urun_list.urunImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
             <jp.shts.android.library.TriangleLabelView
-                android:id="@+id/item_list_urun.indirim_oran"
+                android:id="@+id/item_urun_list.indirimOran"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"

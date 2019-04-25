@@ -3,10 +3,13 @@ package com.aliosman.emall.Model.Get;
 import java.util.List;
 
 public class Urun {
+
     private int ID;
     private String Adi;
     private float Fiyat;
     private List<String> Resimler;
+    private float EskiFiyat;
+    private int Oran;
 
     public Urun(String adi, float fiyat) {
         Adi = adi;
@@ -27,5 +30,13 @@ public class Urun {
 
     public List<String> getResimler() {
         return Resimler;
+    }
+
+    public float getEskiFiyat() {
+        return EskiFiyat;
+    }
+
+    public int getOran() {
+        return Oran;
     }
 }

@@ -11,7 +11,6 @@ import com.aliosman.emall.Adapter.adapter_indirim_urun;
 import com.aliosman.emall.Adapter.adapter_populer_urun;
 import com.aliosman.emall.Background.ModelDownloadList;
 import com.aliosman.emall.Interface.DownloadInterface;
-import com.aliosman.emall.Model.Get.IndirimUrun;
 import com.aliosman.emall.Model.Get.Urun;
 import com.aliosman.emall.R;
 import com.aliosman.emall.degiskenler;
@@ -35,7 +34,7 @@ public class fragment_ana_ekran extends Fragment {
             }
         }).execute(degiskenler.PopulerUrunUrl);
 
-        new ModelDownloadList<IndirimUrun>(IndirimUrun[].class, new DownloadInterface() {
+        new ModelDownloadList<Urun>(Urun[].class, new DownloadInterface() {
             @Override
             public void Complete(List items) {
                 indirim_reyclerView.setAdapter(new adapter_indirim_urun(items));

@@ -12,4 +12,6 @@ public class degiskenler {
     public static final String ResetPassword=Url+"ResetPassword";
     public static final String KategoriListUrl=Url+"Kategoriler?UstID=";
     public static final String KategoriListBackUrl=Url+"Kategoriler?BackID=";
+    public static final String UrunLislemeUrl=Url+"Urunler?KategoriID=";
+    public static final String KategoriBundleString="KategoriID";
 }

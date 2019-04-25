@@ -1,6 +1,7 @@
 package com.aliosman.emall.Fragment;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -9,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.aliosman.emall.Activity.UrunListeleme_Activity;
 import com.aliosman.emall.Adapter.Comparator.KategoriComprator;
 import com.aliosman.emall.Adapter.adapter_kategori_list;
 import com.aliosman.emall.Background.ModelDownloadList;
@@ -57,6 +60,15 @@ public class fragment_kategoriler extends Fragment {
             ReplaceAdapter(item.getID());
         else if (item.getID()==-1)
             ReplaceAdapterBack(item.getUstID());
+        else if (item.getID()==0 ){
+            Intent i=new Intent(getContext(), UrunListeleme_Activity.class);
+            i.putExtra(degiskenler.KategoriBundleString,item.getUstID());
+            startActivity(i);
+        }else if (!item.isAltKategori()){
+            Intent i=new Intent(getContext(), UrunListeleme_Activity.class);
+            i.getExtras().putInt(degiskenler.KategoriBundleString,item.getID());
+            startActivity(i);
+        }
     };
 
     private void setAdapter(List<Kategori> items){
@@ -84,6 +96,7 @@ public class fragment_kategoriler extends Fragment {
             items.add(0,new Kategori()
                     .setAdi("Hepsini Gör")
                     .setID(0)
+                    .setUstID(items.get(0).getUstID())
                     .setAltKategori(false));
             if (items.get(1).getUstID()!=0)
                 items.add(0,new Kategori()

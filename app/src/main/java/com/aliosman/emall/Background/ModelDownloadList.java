@@ -2,7 +2,6 @@ package com.aliosman.emall.Background;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
 import com.aliosman.emall.Interface.DownloadInterface;
 import com.google.gson.Gson;
 import java.lang.reflect.Type;
@@ -37,12 +36,12 @@ public class ModelDownloadList<T> extends AsyncTask<String,Void, List<T>> {
                 .url(url)
                 .header("Accept","application/json")
                 .build();
+        Log.e(TAG, "doInBackground: GetUrl => "+url);
         OkHttpClient client = httpClient.connectTimeout(15, TimeUnit.SECONDS).build();
         try{
 
             Response response = client.newCall(request).execute();
             String s = response.body().string();
-            Log.e(TAG, "doInBackground: "+s );
             return Arrays.asList(new Gson().fromJson(s, (Type) JsonParseClassType));
 
         }catch (Exception ex){
