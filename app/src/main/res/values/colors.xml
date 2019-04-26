@@ -10,4 +10,5 @@
     <color name="navigationInactive">#c4c4c4</color>
     <color name="navigationBackground">#464343</color>
     <color name="navigatonSelectColor">#E64949</color>
+    <color name="bakcground_black_transparent">#B8ACAC</color>
 </resources>

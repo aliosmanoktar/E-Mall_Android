@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RadioButton
+                android:id="@+id/urun_filter_layout.azalanFiyat"
+                android:text="Azalan Fiyat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:id="@+id/urun_filter_layout.artanFiyat"
+                android:text="Artan Fiyat"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RadioGroup>
+        <Button
+            android:id="@+id/urun_filter_layout.uygula"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Uygula"/>
+        <TextView
+            android:id="@+id/urun_filter_layout.uyari"
+            android:visibility="gone"
+            android:textColor="@color/colorRed"
+            android:textSize="16sp"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lütfen Seçim Yapınız!!!"/>
+    </LinearLayout>
+</RelativeLayout>

@@ -3,7 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.UrunListeleme_Activity">
+    tools:context=".Activity.UrunListeleme_Activity"
+    android:orientation="vertical">
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bakcground_black_transparent">
+        <TextView
+            android:id="@+id/urun_listeleme_layout.UrunAdet"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="N Adet Ürün"/>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end">
+            <ImageView
+                android:id="@+id/urun_listeleme_layout.filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_filter" />
+        </RelativeLayout>
+    </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/urun_listeleme_layout.recyler"
         android:layout_width="match_parent"
