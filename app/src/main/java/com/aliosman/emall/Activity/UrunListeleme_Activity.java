@@ -9,9 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.aliosman.emall.Adapter.Comparator.UrunFiyatArtanComprator;
-import com.aliosman.emall.Adapter.Comparator.UrunFiyatAzalanComprator;
+import com.aliosman.emall.Adapter.Comparator.*;
 import com.aliosman.emall.Adapter.Dialog.adapter_urun_action_dialog;
 import com.aliosman.emall.Adapter.Dialog.adapter_urun_filter_dialog;
 import com.aliosman.emall.Adapter.adapter_urun_list;
@@ -25,7 +23,6 @@ import com.aliosman.emall.Model.Get.Urun;
 import com.aliosman.emall.R;
 import com.aliosman.emall.degiskenler;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -36,6 +33,7 @@ public class UrunListeleme_Activity extends AppCompatActivity {
     private String TAG=getClass().getName();
     private TextView txt_adet;
     private ImageView img_fiter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,12 +43,21 @@ public class UrunListeleme_Activity extends AppCompatActivity {
         img_fiter=findViewById(R.id.urun_listeleme_layout_filter);
         img_fiter.setOnClickListener(filterClickListener);
         recyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(),2));
-        int KategoriID =  getIntent().getIntExtra(degiskenler.KategoriBundleString,0);
-        UrunListele(KategoriID);
+        int KategoriID =  getIntent().getIntExtra(degiskenler.UrunKategoriBundleString,-1);
+        String aranan=getIntent().getStringExtra(degiskenler.UrunArananBundleString);
+        if (KategoriID!=-1){
+            UrunListele(KategoriID);
+        }else{
+            UrunListele(aranan);
+        }
     }
 
     private void UrunListele(int KategoriID){
-        new ModelDownloadList<Urun>(Urun[].class,downloadInterface).execute(degiskenler.UrunLislemeUrl+KategoriID);
+        new ModelDownloadList<Urun>(Urun[].class,downloadInterface).execute(degiskenler.UrunLislemeKategoriUrl +KategoriID);
+    }
+
+    private void UrunListele(String aranan){
+        new ModelDownloadList<Urun>(Urun[].class,downloadInterface).execute(degiskenler.UrunLislemeAramaUrl+aranan);
     }
 
     private void SetAdapter(List<Urun> items){
@@ -58,6 +65,7 @@ public class UrunListeleme_Activity extends AppCompatActivity {
         adapter_urun_list adapter = new adapter_urun_list(items,ItemClick,ItemLongClick);
         recyclerView.setAdapter(adapter);
     }
+
     private UrunActionInterface urunAction = (Sepet, item) -> {
         Log.e(TAG, "UrunAction: Sepet="+Sepet+" item=> "+item.getID()+" "+item.getAdi() );
     };
@@ -75,9 +83,11 @@ public class UrunListeleme_Activity extends AppCompatActivity {
         Collections.sort(uruns, type == UrunFilterType.AzalanFiyat ? new UrunFiyatAzalanComprator() : new UrunFiyatArtanComprator());
         SetAdapter(uruns);
     };
+
     private View.OnClickListener filterClickListener = v -> {
         new adapter_urun_filter_dialog(this,SetFilter).Show();
     };
+
     private DownloadInterface<Urun> downloadInterface =new DownloadInterface<Urun>() {
         private Dialog dialog;
         @Override

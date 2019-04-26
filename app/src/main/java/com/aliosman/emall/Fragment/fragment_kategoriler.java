@@ -62,11 +62,11 @@ public class fragment_kategoriler extends Fragment {
             ReplaceAdapterBack(item.getUstID());
         else if (item.getID()==0 ){
             Intent i=new Intent(getContext(), UrunListeleme_Activity.class);
-            i.putExtra(degiskenler.KategoriBundleString,item.getUstID());
+            i.putExtra(degiskenler.UrunKategoriBundleString,item.getUstID());
             startActivity(i);
         }else if (!item.isAltKategori()){
             Intent i=new Intent(getContext(), UrunListeleme_Activity.class);
-            i.getExtras().putInt(degiskenler.KategoriBundleString,item.getID());
+            i.getExtras().putInt(degiskenler.UrunKategoriBundleString,item.getID());
             startActivity(i);
         }
     };

@@ -1,18 +1,27 @@
 package com.aliosman.emall.Activity;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+
 import com.aliosman.emall.Fragment.*;
 import com.aliosman.emall.R;
+import com.aliosman.emall.degiskenler;
 import com.gigamole.navigationtabstrip.NavigationTabStrip;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
 public class AnaEkran extends AppCompatActivity {
+    private SearchView searchView;
     private final  String TAG = getClass().getName();
-    Fragment fr_anaEkran,fr_kategoriler,fr_hesabim;
+    private Fragment fr_anaEkran,fr_kategoriler,fr_hesabim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,4 +69,29 @@ public class AnaEkran extends AppCompatActivity {
            menu.close(true);
         });
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_menu,menu);
+        MenuItem item = menu.findItem(R.id.search_menu_item);
+        searchView = (SearchView) item.getActionView();
+        searchView.setQueryHint("Ürün Arama...");
+        searchView.setOnQueryTextListener(searchListener);
+        return true;
+
+    }
+    private SearchView.OnQueryTextListener searchListener =new SearchView.OnQueryTextListener() {
+        @Override
+        public boolean onQueryTextSubmit(String s) {
+            Intent i=new Intent(getBaseContext(), UrunListeleme_Activity.class);
+            i.putExtra(degiskenler.UrunArananBundleString,s);
+            startActivity(i);
+            return false;
+        }
+
+        @Override
+        public boolean onQueryTextChange(String s) {
+            return false;
+        }
+    };
 }
