@@ -1,4 +1,4 @@
-package com.aliosman.emall.Adapter;
+package com.aliosman.emall.Adapter.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -7,17 +7,17 @@ import android.widget.Button;
 import com.aliosman.emall.R;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-public class adapter_input_dialog {
+public class adapter_input_dialog extends base_dialog_adapter{
 
     private Button InputButton;
     private MaterialEditText InputText;
-    private Dialog dialog;
 
     public adapter_input_dialog(Context context) {
+        super(context);
         CreateDialog(context);
     }
 
-    private void CreateDialog(Context c){
+    protected void CreateDialog(Context c){
         dialog=new Dialog(c);
         dialog.setContentView(R.layout.layout_reset_password_input);
         InputButton = dialog.findViewById(R.id.reset_password_layout__Sifirla);
@@ -43,14 +43,4 @@ public class adapter_input_dialog {
         return InputText;
     }
 
-    public Dialog Show(){
-        if (!dialog.isShowing())
-            dialog.show();
-        return dialog;
-    }
-
-    public void Hide(){
-        if (dialog.isShowing())
-            dialog.dismiss();
-    }
 }

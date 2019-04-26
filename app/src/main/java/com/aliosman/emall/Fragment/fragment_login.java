@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.aliosman.emall.Adapter.adapter_input_dialog;
+import com.aliosman.emall.Adapter.dialog.adapter_input_dialog;
 import com.aliosman.emall.Background.ModelPost;
 import com.aliosman.emall.Interface.PostInterface;
 import com.aliosman.emall.Model.Post.Login;

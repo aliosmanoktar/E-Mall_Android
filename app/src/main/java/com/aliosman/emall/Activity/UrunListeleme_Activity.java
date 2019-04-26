@@ -10,11 +10,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.aliosman.emall.Adapter.Comparator.KategoriComprator;
 import com.aliosman.emall.Adapter.Comparator.UrunFiyatArtanComprator;
 import com.aliosman.emall.Adapter.Comparator.UrunFiyatAzalanComprator;
-import com.aliosman.emall.Adapter.adapter_urun_action_dialog;
-import com.aliosman.emall.Adapter.adapter_urun_filter_dialog;
+import com.aliosman.emall.Adapter.dialog.adapter_urun_action_dialog;
+import com.aliosman.emall.Adapter.dialog.adapter_urun_filter_dialog;
 import com.aliosman.emall.Adapter.adapter_urun_list;
 import com.aliosman.emall.Background.ModelDownloadList;
 import com.aliosman.emall.Interface.ActionUrunFilterInterface;
@@ -27,7 +26,6 @@ import com.aliosman.emall.R;
 import com.aliosman.emall.degiskenler;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

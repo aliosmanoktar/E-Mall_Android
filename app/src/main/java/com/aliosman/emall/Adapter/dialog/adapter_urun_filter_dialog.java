@@ -1,4 +1,4 @@
-package com.aliosman.emall.Adapter;
+package com.aliosman.emall.Adapter.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -11,19 +11,18 @@ import com.aliosman.emall.Interface.ActionUrunFilterInterface;
 import com.aliosman.emall.Interface.UrunFilterType;
 import com.aliosman.emall.R;
 
-public class adapter_urun_filter_dialog {
-    private Context c;
+public class adapter_urun_filter_dialog extends base_dialog_adapter {
+
     private ActionUrunFilterInterface filter;
     private RadioButton azalanFiyat,artanFiyat;
-    private Dialog dialog;
     private Button uygula;
     private TextView uyari;
+
     public adapter_urun_filter_dialog(Context c, ActionUrunFilterInterface filter) {
-        this.c = c;
+        super(c);
         this.filter = filter;
-        CreateDialog(c);
     }
-    private void CreateDialog(Context c){
+    protected void CreateDialog(Context c){
         dialog=new Dialog(c);
         dialog.setContentView(R.layout.layout_urun_filter_dialog);
         azalanFiyat = dialog.findViewById(R.id.urun_filter_layout_azalanFiyat);
@@ -40,15 +39,5 @@ public class adapter_urun_filter_dialog {
                 Hide();
             }
         });
-    }
-    public Dialog Show(){
-        if (!dialog.isShowing())
-            dialog.show();
-        return dialog;
-    }
-
-    public void Hide(){
-        if (dialog.isShowing())
-            dialog.dismiss();
     }
 }
