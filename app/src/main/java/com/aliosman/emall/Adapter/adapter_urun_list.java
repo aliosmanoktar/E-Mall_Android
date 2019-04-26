@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.aliosman.emall.Interface.RecylerItemClick;
 import com.aliosman.emall.Model.Get.Urun;
@@ -15,12 +16,13 @@ import java.util.List;
 import jp.shts.android.library.TriangleLabelView;
 
 public class adapter_urun_list extends RecyclerView.Adapter<adapter_urun_list.ViewHolder> {
-    List<Urun> items;
-    RecylerItemClick<Urun> click;
-
-    public adapter_urun_list(List<Urun> items, RecylerItemClick<Urun> click) {
+    private List<Urun> items;
+    private RecylerItemClick<Urun> click;
+    private RecylerItemClick<Urun> longClick;
+    public adapter_urun_list(List<Urun> items, RecylerItemClick<Urun> click,RecylerItemClick<Urun> longClick) {
         this.items = items;
         this.click = click;
+        this.longClick=longClick;
     }
 
     @Override
@@ -40,6 +42,13 @@ public class adapter_urun_list extends RecyclerView.Adapter<adapter_urun_list.Vi
             viewHolder.EskiFiyat.setText(item.getEskiFiyat()+ " ₺");
             viewHolder.IndirimOran.setPrimaryText("%"+item.getOran());
         }
+        viewHolder.layout.setOnClickListener(v -> {
+            click.onclick(item);
+        });
+        viewHolder.layout.setOnLongClickListener(v -> {
+            longClick.onclick(item);
+            return true;
+        });
         Picasso.get()
                 .load(item.getResimler().get(0))
                 .centerCrop().fit()
@@ -55,7 +64,7 @@ public class adapter_urun_list extends RecyclerView.Adapter<adapter_urun_list.Vi
         private TriangleLabelView IndirimOran;
         private TextView UrunAdi,EskiFiyat,Fiyat;
         private ImageView UrunImage;
-        private LinearLayout layout;
+        private RelativeLayout layout;
         public ViewHolder(View itemView) {
             super(itemView);
             IndirimOran=itemView.findViewById(R.id.item_urun_list_indirimOran);
@@ -63,7 +72,7 @@ public class adapter_urun_list extends RecyclerView.Adapter<adapter_urun_list.Vi
             EskiFiyat=itemView.findViewById(R.id.item_urun_list_urunEskiFiyat);
             Fiyat=itemView.findViewById(R.id.item_urun_list_urunFiyat);
             UrunImage=itemView.findViewById(R.id.item_urun_list_urunImage);
-            layout=itemView.findViewById(R.id.item_indirim_urun_layout);
+            layout=itemView.findViewById(R.id.item_urun_list_layout);
         }
     }
 }

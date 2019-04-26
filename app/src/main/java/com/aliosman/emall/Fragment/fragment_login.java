@@ -4,14 +4,13 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.aliosman.emall.Adapter.adapter_dialog;
+import com.aliosman.emall.Adapter.adapter_input_dialog;
 import com.aliosman.emall.Background.ModelPost;
 import com.aliosman.emall.Interface.PostInterface;
 import com.aliosman.emall.Model.Post.Login;
@@ -21,7 +20,6 @@ import com.aliosman.emall.degiskenler;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeSuccessDialog;
-import com.google.gson.Gson;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import static android.util.Patterns.EMAIL_ADDRESS;
@@ -53,7 +51,7 @@ public class fragment_login extends Fragment {
         });
         TextView txt_resetPassword=view.findViewById(R.id.login_layout_resetPassword);
         txt_resetPassword.setOnClickListener(l->{
-            adapter_dialog dialog=new adapter_dialog(getActivity())
+            adapter_input_dialog dialog=new adapter_input_dialog(getActivity())
                     .SetHint("E Mail");
             dialog.SetInputButtonClick(v -> {
                 String mail = dialog.getInputText().getText().toString();

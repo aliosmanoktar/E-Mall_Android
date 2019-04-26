@@ -1,69 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp"
-    android:id="@+id/item_urun_list.layout">
-    <LinearLayout
+<RelativeLayout android:layout_marginStart="7dp"
+    android:id="@+id/item_urun_list.layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dp"
+    android:orientation="vertical"
+    android:layout_height="250dp"
+    android:layout_weight="1"
+    android:padding="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            android:layout_width="125dp"
-            android:layout_height="125dp">
-            <ImageView
-                android:id="@+id/item_urun_list.urunImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-            <jp.shts.android.library.TriangleLabelView
-                android:id="@+id/item_urun_list.indirimOran"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                app:backgroundColor="@color/colorRed"
-                app:corner="leftTop"
-                android:padding="20dp"
-                app:labelTopPadding="10dp"
-                app:primaryText="% 10"
-                app:primaryTextColor="@color/colorWhite"
-                app:primaryTextSize="16sp"
-                app:secondaryText="%10"
-                app:secondaryTextColor="@color/colorRed"
-                app:secondaryTextSize="16sp"
-                android:visibility="gone"/>
-        </RelativeLayout>
-        <LinearLayout
-            android:orientation="vertical"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/item_urun_list.urunImage"
+            android:scaleType="fitStart"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" />
+        <jp.shts.android.library.TriangleLabelView
+            android:id="@+id/item_urun_list.indirimOran"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            app:backgroundColor="@color/colorRed"
+            app:corner="leftTop"
+            android:padding="20dp"
+            app:labelTopPadding="10dp"
+            app:primaryText="% 10"
+            app:primaryTextColor="@color/colorWhite"
+            app:primaryTextSize="16sp"
+            app:secondaryText="%10"
+            app:secondaryTextColor="@color/colorRed"
+            app:secondaryTextSize="16sp"
+            android:visibility="gone"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorTransparentWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/item_urun_list.urunAdi"
+            android:textSize="12sp"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Urun Adi"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/item_urun_list.urunAdi"
                 android:layout_weight="1"
+                android:id="@+id/item_urun_list.urunFiyat"
+                android:textSize="12sp"
+                android:layout_margin="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:textSize="16sp"/>
+                android:text="Fiyat"/>
             <LinearLayout
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/item_urun_list.urunFiyat"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:textSize="16sp"/>
-                <TextView
-                    android:visibility="gone"
                     android:id="@+id/item_urun_list.urunEskiFiyat"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:textSize="16sp"/>
+                    android:background="@drawable/text_strike"
+                    android:textSize="12sp"
+                    android:layout_margin="5dp"
+                    android:text="Eski Fiyat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>
