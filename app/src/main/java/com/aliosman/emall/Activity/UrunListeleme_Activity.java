@@ -12,8 +12,8 @@ import android.widget.TextView;
 
 import com.aliosman.emall.Adapter.Comparator.UrunFiyatArtanComprator;
 import com.aliosman.emall.Adapter.Comparator.UrunFiyatAzalanComprator;
-import com.aliosman.emall.Adapter.dialog.adapter_urun_action_dialog;
-import com.aliosman.emall.Adapter.dialog.adapter_urun_filter_dialog;
+import com.aliosman.emall.Adapter.Dialog.adapter_urun_action_dialog;
+import com.aliosman.emall.Adapter.Dialog.adapter_urun_filter_dialog;
 import com.aliosman.emall.Adapter.adapter_urun_list;
 import com.aliosman.emall.Background.ModelDownloadList;
 import com.aliosman.emall.Interface.ActionUrunFilterInterface;

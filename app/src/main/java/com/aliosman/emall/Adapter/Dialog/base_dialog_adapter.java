@@ -1,4 +1,4 @@
-package com.aliosman.emall.Adapter.dialog;
+package com.aliosman.emall.Adapter.Dialog;
 
 import android.app.Dialog;
 import android.content.Context;
