@@ -64,6 +64,7 @@ public class AnaEkran extends AppCompatActivity {
         FloatingActionButton menu_favori = findViewById(R.id.ana_ekran_fab_menu_item_favoriler);
         menu_sepet.setOnClickListener(v -> {
             menu.close(true);
+            startActivity(new Intent(getBaseContext(),SepetActivity.class));
         });
         menu_favori.setOnClickListener(v -> {
            menu.close(true);

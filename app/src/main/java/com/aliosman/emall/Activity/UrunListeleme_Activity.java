@@ -22,6 +22,7 @@ import com.aliosman.emall.Interface.RecylerItemClick;
 import com.aliosman.emall.Interface.UrunActionInterface;
 import com.aliosman.emall.Interface.UrunFilterType;
 import com.aliosman.emall.Model.Get.Favorite;
+import com.aliosman.emall.Model.Get.Sepet;
 import com.aliosman.emall.Model.Get.Urun;
 import com.aliosman.emall.R;
 import com.aliosman.emall.degiskenler;
@@ -90,7 +91,7 @@ public class UrunListeleme_Activity extends AppCompatActivity {
             if (code==200){
                 new AwesomeSuccessDialog(UrunListeleme_Activity.this)
                         .setTitle("Başarılı")
-                        .setMessage("Ürün Favorilere Eklendi")
+                        .setMessage(value)
                         .setDoneButtonText("Tamam")
                         .setDoneButtonClick(() -> {
                             dialog.dismiss();
@@ -107,11 +108,14 @@ public class UrunListeleme_Activity extends AppCompatActivity {
         }
     };
 
-    private UrunActionInterface urunAction = (Sepet, item) -> {
-        Log.e(TAG, "UrunAction: Sepet="+Sepet+" item=> "+item.getID()+" "+item.getAdi() );
-        if (!Sepet){
+    private UrunActionInterface urunAction = (sepet, item) -> {
+        Log.e(TAG, "UrunAction: Sepet="+sepet+" item=> "+item.getID()+" "+item.getAdi() );
+        if (!sepet){
             new ModelPost(postInterface).execute(degiskenler.FavoritePostUrl,new Favorite()
                     .setKullaniciID(48).setUrunID(item.getID()).toString());
+        }else{
+            new ModelPost(postInterface).execute(degiskenler.SepetPostUrl,new Sepet()
+                    .setKullaniciID(48).setUrunID(item.getID()).setAdet(1).toString());
         }
     };
 

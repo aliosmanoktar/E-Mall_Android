@@ -11,12 +11,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import com.aliosman.emall.Adapter.Swipe.ReyclerItemSwipeHelper;
-import com.aliosman.emall.Adapter.adapter_favorite;
+import com.aliosman.emall.Adapter.adapter_sepet;
 import com.aliosman.emall.Background.ModelDelete;
 import com.aliosman.emall.Background.ModelDownloadList;
 import com.aliosman.emall.Interface.DownloadInterface;
 import com.aliosman.emall.Interface.ReyclerItemSwipeListener;
-import com.aliosman.emall.Model.Get.Favorite;
+import com.aliosman.emall.Model.Get.Sepet;
 import com.aliosman.emall.R;
 import com.aliosman.emall.degiskenler;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeInfoDialog;
@@ -24,23 +24,24 @@ import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavorilerActivity extends AppCompatActivity {
+public class SepetActivity extends AppCompatActivity {
+
     private RecyclerView recyclerView;
     private String TAG=getClass().getName();
     private View RootView;
-    private adapter_favorite adapter;
+    private adapter_sepet adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favoriler);
-        RootView=findViewById(R.id.favoriler_layout_RootView);
-        recyclerView=findViewById(R.id.favoriler_layout_recylerview);
+        setContentView(R.layout.activity_sepet);
+        RootView=findViewById(R.id.sepet_layout_RootView);
+        recyclerView=findViewById(R.id.sepet_layout_recylerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         ItemTouchHelper.SimpleCallback swipeHelper = new ReyclerItemSwipeHelper(0,ItemTouchHelper.LEFT,swipeListener);
         new ItemTouchHelper(swipeHelper).attachToRecyclerView(recyclerView);
-        Button clearAll = findViewById(R.id.favoriler_layout_TumunuTemizle);
+        Button clearAll = findViewById(R.id.sepet_layout_TumunuTemizle);
         clearAll.setOnClickListener(ClearAllClick);
-        new ModelDownloadList<Favorite>(Favorite[].class,downloadInterface).execute(degiskenler.FavoriteGetUrl+48);
+        new ModelDownloadList<Sepet>(Sepet[].class,downloadInterface).execute(degiskenler.SepetGetUrl+48);
     }
 
     private View.OnClickListener ClearAllClick = v -> {
@@ -51,9 +52,9 @@ public class FavorilerActivity extends AppCompatActivity {
                 .setPositiveButtonbackgroundColor(R.color.colorRed)
                 .setNegativeButtonbackgroundColor(R.color.colorGreen)
                 .setTitle("Uyarı")
-                .setMessage("Tüm Favori Ürünlerini Silmek İstediğinizden Eminmisiniz?")
+                .setMessage("Tüm Sepet Ürünlerini Silmek İstediğinizden Eminmisiniz?")
                 .setPositiveButtonClick(() -> {
-                    new ModelDelete().execute(degiskenler.FavoriteClearAllUrl+48);
+                    new ModelDelete().execute(degiskenler.SepetClearAllUrl+48);
                     SetAdapter(new ArrayList<>());
                 })
                 .setNegativeButtonClick(() -> {
@@ -62,27 +63,8 @@ public class FavorilerActivity extends AppCompatActivity {
                 .show();
     };
 
-    private DownloadInterface<Favorite> downloadInterface=new DownloadInterface<Favorite>() {
-        private Dialog dialog;
-        @Override
-        public void Start() {
-            dialog=new AwesomeProgressDialog(FavorilerActivity.this)
-                    .setTitle("Lütfen Bekleyiniz")
-                    .setMessage("Favoriler Listeleniyor")
-                    .setCancelable(false)
-                    .show();
-        }
-
-        @Override
-        public void Complete(List<Favorite> items) {
-            if (dialog!=null)
-                dialog.dismiss();
-            SetAdapter(items);
-        }
-    };
-
     private ReyclerItemSwipeListener swipeListener = (viewHolder, direction, position) -> {
-        Favorite item = (Favorite)viewHolder.itemView.getTag();
+        Sepet item = (Sepet)viewHolder.itemView.getTag();
         adapter.removeItem(position);
         Snackbar snackbar= Snackbar.make(RootView,"Ürün Silindi",Snackbar.LENGTH_LONG);
         snackbar.addCallback(new Snackbar.Callback(){
@@ -90,7 +72,7 @@ public class FavorilerActivity extends AppCompatActivity {
             public void onDismissed(Snackbar transientBottomBar, int event) {
                 Log.e(TAG, "onDismissed: "+event);
                 if (event==Snackbar.Callback.DISMISS_EVENT_TIMEOUT){
-                    new ModelDelete().execute(degiskenler.FavoriteDeleteIDUrl+item.getID());
+                    new ModelDelete().execute(degiskenler.SepetDeleteIDUrl+item.getID());
                 }
             }
         });
@@ -101,9 +83,28 @@ public class FavorilerActivity extends AppCompatActivity {
         snackbar.show();
     };
 
-    private void SetAdapter(List<Favorite> favorites){
-        favorites=new ArrayList<>(favorites);
-        adapter=new adapter_favorite(favorites);
+    private DownloadInterface<Sepet> downloadInterface=new DownloadInterface<Sepet>() {
+        private Dialog dialog;
+        @Override
+        public void Start() {
+            dialog=new AwesomeProgressDialog(SepetActivity.this)
+                    .setTitle("Lütfen Bekleyiniz")
+                    .setMessage("Sepet Listeleniyor")
+                    .setCancelable(false)
+                    .show();
+        }
+
+        @Override
+        public void Complete(List<Sepet> items) {
+            if (dialog!=null)
+                dialog.dismiss();
+            SetAdapter(items);
+        }
+    };
+
+    private void SetAdapter(List<Sepet> sepets){
+        sepets = new ArrayList<>(sepets);
+        adapter = new adapter_sepet(sepets);
         recyclerView.setAdapter(adapter);
     }
 }

@@ -43,11 +43,16 @@
           android:background="@color/white"
           android:padding="10dp"
           >
-          <ImageView
-              android:id="@+id/item_favoriler.urunImage"
-              android:src="@mipmap/ic_launcher"
+          <LinearLayout
               android:layout_width="wrap_content"
-              android:layout_height="match_parent" />
+              android:layout_height="match_parent"
+              android:minWidth="70dp">
+              <ImageView
+                  android:id="@+id/item_favoriler.urunImage"
+                  android:src="@mipmap/ic_launcher"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent" />
+          </LinearLayout>
           <LinearLayout
               android:layout_weight="1"
               android:orientation="vertical"

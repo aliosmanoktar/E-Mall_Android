@@ -21,4 +21,8 @@ public class degiskenler {
     public static final String FavoriteDeleteIDUrl= Url+"Favorite?FavoriteID=";
     public static final String FavoriteClearAllUrl=Url+"Favorite?KullaniciID=";
     public static final String FavoritePostUrl = Url+"Favorite";
+    public static final String SepetGetUrl = Url+"Sepet?KullaiciID=";
+    public static final String SepetDeleteIDUrl= Url+"Sepet?SepetID=";
+    public static final String SepetClearAllUrl=Url+"Sepet?KullaniciID=";
+    public static final String SepetPostUrl = Url+"Sepet";
 }
