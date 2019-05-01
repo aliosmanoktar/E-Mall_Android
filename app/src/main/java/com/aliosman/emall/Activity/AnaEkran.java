@@ -67,6 +67,7 @@ public class AnaEkran extends AppCompatActivity {
         });
         menu_favori.setOnClickListener(v -> {
            menu.close(true);
+           startActivity(new Intent(getBaseContext(),FavorilerActivity.class));
         });
     }
 

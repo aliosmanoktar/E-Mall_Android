@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/item_favoriler.rootView"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+  <android.support.v7.widget.CardView
+      android:clickable="false"
+      app:cardElevation="5dp"
+      app:cardCornerRadius="15dp"
+      app:cardUseCompatPadding="true"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+      <RelativeLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content">
+          <LinearLayout
+              android:paddingStart="10dp"
+              android:paddingEnd="10dp"
+              android:paddingTop="10dp"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+              <RelativeLayout
+                  android:id="@+id/item_favoriler.frg_delete"
+                  android:layout_weight="1"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <ImageView
+                      android:layout_alignParentRight="true"
+                      android:layout_marginRight="25dp"
+                      android:layout_marginTop="20dp"
+                      android:layout_marginBottom="20dp"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:src="@drawable/ic_delete" />
+              </RelativeLayout>
+          </LinearLayout>
+      </RelativeLayout>
+      <LinearLayout
+          android:id="@+id/SwipeItem_view"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/white"
+          android:padding="10dp"
+          >
+          <ImageView
+              android:id="@+id/item_favoriler.urunImage"
+              android:src="@mipmap/ic_launcher"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent" />
+          <LinearLayout
+              android:layout_weight="1"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+              <TextView
+                  android:layout_weight="1"
+                  android:id="@+id/item_favoriler.urunName"
+                  android:layout_margin="5dp"
+                  android:textSize="16sp"
+                  android:text="@string/app_name"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content" />
+              <TextView
+                  android:layout_weight="1"
+                  android:id="@+id/item_favoriler.urunFiyat"
+                  android:layout_margin="5dp"
+                  android:textSize="16sp"
+                  android:text="@string/app_name"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content" />
+          </LinearLayout>
+      </LinearLayout>
+  </android.support.v7.widget.CardView>
+</RelativeLayout>

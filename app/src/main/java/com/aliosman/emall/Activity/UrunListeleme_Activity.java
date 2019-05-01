@@ -14,15 +14,21 @@ import com.aliosman.emall.Adapter.Dialog.adapter_urun_action_dialog;
 import com.aliosman.emall.Adapter.Dialog.adapter_urun_filter_dialog;
 import com.aliosman.emall.Adapter.adapter_urun_list;
 import com.aliosman.emall.Background.ModelDownloadList;
+import com.aliosman.emall.Background.ModelPost;
 import com.aliosman.emall.Interface.ActionUrunFilterInterface;
 import com.aliosman.emall.Interface.DownloadInterface;
+import com.aliosman.emall.Interface.PostInterface;
 import com.aliosman.emall.Interface.RecylerItemClick;
 import com.aliosman.emall.Interface.UrunActionInterface;
 import com.aliosman.emall.Interface.UrunFilterType;
+import com.aliosman.emall.Model.Get.Favorite;
 import com.aliosman.emall.Model.Get.Urun;
 import com.aliosman.emall.R;
 import com.aliosman.emall.degiskenler;
+import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog;
+import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeSuccessDialog;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -66,8 +72,47 @@ public class UrunListeleme_Activity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+    private PostInterface postInterface = new PostInterface() {
+        Dialog dialog;
+        @Override
+        public void Start() {
+            dialog=new AwesomeProgressDialog(UrunListeleme_Activity.this)
+                    .setCancelable(false)
+                    .setTitle("Bekleyiniz")
+                    .setMessage("Ürün Favorilere Ekleniyor")
+                    .show();
+        }
+
+        @Override
+        public void Post(int code, String value) {
+            if (dialog!=null)
+                dialog.dismiss();
+            if (code==200){
+                new AwesomeSuccessDialog(UrunListeleme_Activity.this)
+                        .setTitle("Başarılı")
+                        .setMessage("Ürün Favorilere Eklendi")
+                        .setDoneButtonText("Tamam")
+                        .setDoneButtonClick(() -> {
+                            dialog.dismiss();
+                        }).show();
+            }else{
+                dialog=new AwesomeErrorDialog(UrunListeleme_Activity.this)
+                        .setMessage(value)
+                        .setTitle("Başarısız")
+                        .setButtonText("Tamam")
+                        .setErrorButtonClick(()->{
+                            dialog.dismiss();
+                        }).show();
+            }
+        }
+    };
+
     private UrunActionInterface urunAction = (Sepet, item) -> {
         Log.e(TAG, "UrunAction: Sepet="+Sepet+" item=> "+item.getID()+" "+item.getAdi() );
+        if (!Sepet){
+            new ModelPost(postInterface).execute(degiskenler.FavoritePostUrl,new Favorite()
+                    .setKullaniciID(48).setUrunID(item.getID()).toString());
+        }
     };
 
     private RecylerItemClick<Urun> ItemClick = item -> {
