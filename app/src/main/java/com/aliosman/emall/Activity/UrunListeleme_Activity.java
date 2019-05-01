@@ -1,6 +1,7 @@
 package com.aliosman.emall.Activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -80,7 +81,7 @@ public class UrunListeleme_Activity extends AppCompatActivity {
             dialog=new AwesomeProgressDialog(UrunListeleme_Activity.this)
                     .setCancelable(false)
                     .setTitle("Bekleyiniz")
-                    .setMessage("Ürün Favorilere Ekleniyor")
+                    .setMessage("Ürün Ekleniyor")
                     .show();
         }
 
@@ -120,7 +121,9 @@ public class UrunListeleme_Activity extends AppCompatActivity {
     };
 
     private RecylerItemClick<Urun> ItemClick = item -> {
-        Log.e(TAG, " ItemClick: "+item.getID()+" "+item.getAdi());
+        Intent i = new Intent(getApplicationContext(),UrunActivity.class);
+        i.putExtra(degiskenler.UrunShowIDBundleString,item.getID());
+        startActivity(i);
     };
 
     private RecylerItemClick<Urun> ItemLongClick = item -> {

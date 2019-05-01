@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.aliosman.emall.Interface.RecylerItemClick;
 import com.aliosman.emall.Model.Get.Urun;
 import com.aliosman.emall.R;
 import com.squareup.picasso.Picasso;
@@ -18,8 +19,10 @@ import java.util.List;
 public class adapter_populer_urun extends RecyclerView.Adapter<adapter_populer_urun.ViewHolder> {
     private List<Urun> uruns;
     private String TAG = getClass().getName();
-    public adapter_populer_urun(List<Urun> uruns){
+    private RecylerItemClick click;
+    public adapter_populer_urun(List<Urun> uruns,RecylerItemClick click){
         this.uruns=uruns;
+        this.click=click;
     }
 
     @Override
@@ -33,12 +36,14 @@ public class adapter_populer_urun extends RecyclerView.Adapter<adapter_populer_u
         Urun item = uruns.get(i);
         viewHolder.txt_urunAdi.setText(item.getAdi());
         viewHolder.txt_urunFiyat.setText(item.getFiyat()+" ₺");
-        if (item.getResimler()!=null && item.getResimler().size()!=0){
-            Picasso.get()
-                    .load(item.getResimler().get(0))
-                    .centerCrop()
-                    .fit().into(viewHolder.urunImage);
-        }
+        viewHolder.layout.setOnClickListener(v -> {
+            click.onclick(item);
+        });
+        Picasso.get()
+                .load(item.getResimler().get(0))
+                .centerCrop()
+                .error(R.drawable.urun_hazirlaniyor)
+                .fit().into(viewHolder.urunImage);
         viewHolder.layout.setTag(item);
     }
 

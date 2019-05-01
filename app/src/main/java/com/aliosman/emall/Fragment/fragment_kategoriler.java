@@ -66,7 +66,7 @@ public class fragment_kategoriler extends Fragment {
             startActivity(i);
         }else if (!item.isAltKategori()){
             Intent i=new Intent(getContext(), UrunListeleme_Activity.class);
-            i.getExtras().putInt(degiskenler.UrunKategoriBundleString,item.getID());
+            i.putExtra(degiskenler.UrunKategoriBundleString,item.getID());
             startActivity(i);
         }
     };

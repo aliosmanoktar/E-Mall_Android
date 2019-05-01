@@ -42,4 +42,6 @@ dependencies {
     implementation('cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2') {
         exclude module: 'support-v4'
     }
+    implementation 'com.github.DanielMartinus:Stepper-Touch:0.6'
+    implementation 'me.relex:circleindicator:1.2.2'
 }

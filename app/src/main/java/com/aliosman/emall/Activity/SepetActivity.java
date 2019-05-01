@@ -1,6 +1,7 @@
 package com.aliosman.emall.Activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.aliosman.emall.Adapter.adapter_sepet;
 import com.aliosman.emall.Background.ModelDelete;
 import com.aliosman.emall.Background.ModelDownloadList;
 import com.aliosman.emall.Interface.DownloadInterface;
+import com.aliosman.emall.Interface.RecylerItemClick;
 import com.aliosman.emall.Interface.ReyclerItemSwipeListener;
 import com.aliosman.emall.Model.Get.Sepet;
 import com.aliosman.emall.R;
@@ -104,7 +106,13 @@ public class SepetActivity extends AppCompatActivity {
 
     private void SetAdapter(List<Sepet> sepets){
         sepets = new ArrayList<>(sepets);
-        adapter = new adapter_sepet(sepets);
+        adapter = new adapter_sepet(sepets,SepetteItemClick);
         recyclerView.setAdapter(adapter);
     }
+
+    private RecylerItemClick<Sepet> SepetteItemClick = item -> {
+        Intent i = new Intent(getApplicationContext(),UrunActivity.class);
+        i.putExtra(degiskenler.UrunShowIDBundleString,item.getUrunID());
+        startActivity(i);
+    };
 }

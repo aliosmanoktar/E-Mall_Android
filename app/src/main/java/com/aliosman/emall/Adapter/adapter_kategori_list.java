@@ -6,9 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.aliosman.emall.Interface.RecylerItemClick;
 import com.aliosman.emall.Model.Get.Kategori;
 import com.aliosman.emall.R;

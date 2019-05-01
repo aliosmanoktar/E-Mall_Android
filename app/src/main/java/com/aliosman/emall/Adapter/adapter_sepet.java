@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.aliosman.emall.Adapter.Swipe.SwipeViewHolderBase;
+import com.aliosman.emall.Interface.RecylerItemClick;
 import com.aliosman.emall.Model.Get.Sepet;
 import com.aliosman.emall.R;
 import com.squareup.picasso.Picasso;
@@ -16,9 +17,10 @@ import java.util.List;
 public class adapter_sepet extends RecyclerView.Adapter<adapter_sepet.ViewHolder> {
 
     private List<Sepet> items;
-
-    public adapter_sepet(List<Sepet> items) {
+    private RecylerItemClick click;
+    public adapter_sepet(List<Sepet> items, RecylerItemClick click) {
         this.items = items;
+        this.click=click;
     }
 
     @Override
@@ -34,9 +36,13 @@ public class adapter_sepet extends RecyclerView.Adapter<adapter_sepet.ViewHolder
         viewHolder.urunAdi.setText(item.getUrun().getAdi());
         viewHolder.urunFiyat.setText(item.getUrun().getFiyat()+" ₺");
         viewHolder.urunToplam.setText(item.getUrun().getFiyat()+"₺ x "+ item.getAdet()+" = "+(item.getUrun().getFiyat()*item.getAdet())+ " ₺");
+        viewHolder.frg_view.setOnClickListener(v -> {
+            click.onclick(item);
+        });
         Picasso.get()
                 .load(item.getUrun().getResimler().get(0))
                 .centerCrop()
+                .error(R.drawable.urun_hazirlaniyor)
                 .fit().into(viewHolder.urunImage);
     }
 

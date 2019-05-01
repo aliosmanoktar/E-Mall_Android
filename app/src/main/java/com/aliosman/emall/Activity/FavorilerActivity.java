@@ -1,6 +1,7 @@
 package com.aliosman.emall.Activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.aliosman.emall.Adapter.adapter_favorite;
 import com.aliosman.emall.Background.ModelDelete;
 import com.aliosman.emall.Background.ModelDownloadList;
 import com.aliosman.emall.Interface.DownloadInterface;
+import com.aliosman.emall.Interface.RecylerItemClick;
 import com.aliosman.emall.Interface.ReyclerItemSwipeListener;
 import com.aliosman.emall.Model.Get.Favorite;
 import com.aliosman.emall.R;
@@ -103,7 +105,12 @@ public class FavorilerActivity extends AppCompatActivity {
 
     private void SetAdapter(List<Favorite> favorites){
         favorites=new ArrayList<>(favorites);
-        adapter=new adapter_favorite(favorites);
+        adapter=new adapter_favorite(favorites,favoriteItemClick);
         recyclerView.setAdapter(adapter);
     }
+    private RecylerItemClick<Favorite> favoriteItemClick = item -> {
+        Intent i = new Intent(getApplicationContext(),UrunActivity.class);
+        i.putExtra(degiskenler.UrunShowIDBundleString,item.getUrunID());
+        startActivity(i);
+    };
 }

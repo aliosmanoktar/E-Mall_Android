@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.SepetActivity"></activity>
+        <activity android:name=".Activity.SepetActivity"/>
         <activity android:name=".Activity.FavorilerActivity" />
         <activity android:name=".Activity.UrunActivity" />
         <activity android:name=".Activity.UrunListeleme_Activity" />
@@ -19,7 +19,6 @@
         <activity android:name=".Activity.AnaEkran">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -6,11 +6,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-
 import com.aliosman.emall.Fragment.*;
 import com.aliosman.emall.R;
 import com.aliosman.emall.degiskenler;
@@ -19,9 +16,11 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
 public class AnaEkran extends AppCompatActivity {
+
     private SearchView searchView;
     private final  String TAG = getClass().getName();
     private Fragment fr_anaEkran,fr_kategoriler,fr_hesabim;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +84,8 @@ public class AnaEkran extends AppCompatActivity {
     private SearchView.OnQueryTextListener searchListener =new SearchView.OnQueryTextListener() {
         @Override
         public boolean onQueryTextSubmit(String s) {
+            searchView.setQuery("",false);
+            searchView.onActionViewCollapsed();
             Intent i=new Intent(getBaseContext(), UrunListeleme_Activity.class);
             i.putExtra(degiskenler.UrunArananBundleString,s);
             startActivity(i);

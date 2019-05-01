@@ -7,19 +7,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.aliosman.emall.Adapter.Swipe.SwipeViewHolderBase;
+import com.aliosman.emall.Interface.RecylerItemClick;
 import com.aliosman.emall.Model.Get.Favorite;
 import com.aliosman.emall.R;
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 public class adapter_favorite extends RecyclerView.Adapter<adapter_favorite.ViewHolder> {
 
     private String TAG=getClass().getName();
     private List<Favorite> items;
-
-    public adapter_favorite(List<Favorite> items) {
+    private RecylerItemClick click;
+    public adapter_favorite(List<Favorite> items,RecylerItemClick click) {
         this.items = items;
+        this.click=click;
     }
 
     @Override
@@ -34,6 +35,9 @@ public class adapter_favorite extends RecyclerView.Adapter<adapter_favorite.View
         viewHolder.itemView.setTag(item);
         viewHolder.urunAdi.setText(item.getUrun().getAdi());
         viewHolder.urunFiyat.setText(item.getUrun().getFiyat()+" ₺");
+        viewHolder.frg_view.setOnClickListener(v -> {
+            click.onclick(item);
+        });
         Picasso.get()
                 .load(item.getUrun().getResimler().get(0))
                 .centerCrop()

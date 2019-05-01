@@ -3,10 +3,11 @@ package com.aliosman.emall;
 import okhttp3.MediaType;
 
 public class degiskenler {
-    private static final String Url="http://192.168.42.24/api/";
+    private static final String Url="http://10.52.177.59/api/";
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     public static final String UrunKategoriBundleString ="KategoriID";
     public static final String UrunArananBundleString="arama";
+    public static final String UrunShowIDBundleString="UrunID";
     public static final String PopulerUrunUrl=Url+"PopulerUrunler";
     public static final String IndirimUrunUrl=Url+"IndirimUrunler";
     public static final String LoginUrl=Url+"Login";
@@ -17,10 +18,11 @@ public class degiskenler {
     public static final String UrunLislemeKategoriUrl =Url+"Urunler?KategoriID=";
     public static final String UrunLislemeAramaUrl =Url+"Urunler?aranan=";
     public static final String UrunGerUrunUrl = Url+"Urunler?UrunID=";
-    public static final String FavoriteGetUrl = Url+"Favorite?KullaiciID=";
+    public static final String FavoriteGetUrl = Url+"Favorite?KullaniciID=";
     public static final String FavoriteDeleteIDUrl= Url+"Favorite?FavoriteID=";
     public static final String FavoriteClearAllUrl=Url+"Favorite?KullaniciID=";
     public static final String FavoritePostUrl = Url+"Favorite";
+    public static final String FavoriteCheck=Url+"Favorite?KullaniciID=%d&UrunID=%d";
     public static final String SepetGetUrl = Url+"Sepet?KullaiciID=";
     public static final String SepetDeleteIDUrl= Url+"Sepet?SepetID=";
     public static final String SepetClearAllUrl=Url+"Sepet?KullaniciID=";
