@@ -3,11 +3,13 @@ package com.aliosman.emall;
 import okhttp3.MediaType;
 
 public class degiskenler {
-    private static final String Url="http://10.52.177.59/api/";
+    private static final String Url="http://192.168.43.130/api/";
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     public static final String UrunKategoriBundleString ="KategoriID";
     public static final String UrunArananBundleString="arama";
     public static final String UrunShowIDBundleString="UrunID";
+    public static final String ImageShowImagePosition="ImagePosition";
+    public static final String ImageShowImageList="ImageList";
     public static final String PopulerUrunUrl=Url+"PopulerUrunler";
     public static final String IndirimUrunUrl=Url+"IndirimUrunler";
     public static final String LoginUrl=Url+"Login";
@@ -27,4 +29,5 @@ public class degiskenler {
     public static final String SepetDeleteIDUrl= Url+"Sepet?SepetID=";
     public static final String SepetClearAllUrl=Url+"Sepet?KullaniciID=";
     public static final String SepetPostUrl = Url+"Sepet";
+
 }

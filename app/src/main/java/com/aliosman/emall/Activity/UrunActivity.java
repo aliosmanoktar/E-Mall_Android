@@ -8,10 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.aliosman.emall.Adapter.Dialog.adapter_image_dialog;
 import com.aliosman.emall.Adapter.adapter_image_swipe;
 import com.aliosman.emall.Background.ModelDownloaSingle;
 import com.aliosman.emall.Background.ModelPost;
 import com.aliosman.emall.Interface.DownloadSingleInterface;
+import com.aliosman.emall.Interface.ImageClick;
 import com.aliosman.emall.Interface.PostInterface;
 import com.aliosman.emall.Model.Get.Favorite;
 import com.aliosman.emall.Model.Get.Sepet;
@@ -22,6 +25,7 @@ import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeSuccessDialog;
 
+import java.util.ArrayList;
 import java.util.List;
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 import me.relex.circleindicator.CircleIndicator;
@@ -154,8 +158,18 @@ public class UrunActivity extends AppCompatActivity {
     }
 
     private void SetImageAdapter(List<String> images){
-        adapter_image_swipe adapter = new adapter_image_swipe(images,getApplicationContext());
+        adapter_image_swipe adapter = new adapter_image_swipe(images,getApplicationContext(),Imageclick);
         imageList.setAdapter(adapter);
         indicator.setViewPager(imageList);
     }
+
+    private ImageClick Imageclick= (position, resimler) -> {
+        adapter_image_dialog dialog = new adapter_image_dialog();
+        Bundle bundle = new Bundle();
+        bundle.putInt(degiskenler.ImageShowImagePosition,position);
+        bundle.putStringArrayList(degiskenler.ImageShowImageList,new ArrayList<>(resimler));
+        dialog.setArguments(bundle);
+        dialog.show(getSupportFragmentManager().beginTransaction(), "ImageShow");
+    };
+
 }

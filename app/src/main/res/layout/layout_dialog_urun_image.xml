@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
+                android:id="@+id/urun_image_dialog_layout.viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="#8e212121"/>
+            <me.relex.circleindicator.CircleIndicator
+                android:id="@+id/urun_image_dialog_layout.pageIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_alignParentBottom="true"
+                />
+
+        </RelativeLayout>
+    </FrameLayout>
+</android.support.constraint.ConstraintLayout>

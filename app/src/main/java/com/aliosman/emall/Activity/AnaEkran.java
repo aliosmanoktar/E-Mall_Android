@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.aliosman.emall.Adapter.Dialog.adapter_image_dialog;
 import com.aliosman.emall.Fragment.*;
 import com.aliosman.emall.R;
 import com.aliosman.emall.degiskenler;
@@ -67,6 +69,8 @@ public class AnaEkran extends AppCompatActivity {
         });
         menu_favori.setOnClickListener(v -> {
            menu.close(true);
+            adapter_image_dialog dialog = new adapter_image_dialog();
+            dialog.show(getSupportFragmentManager().beginTransaction(), "deneme");
            startActivity(new Intent(getBaseContext(),FavorilerActivity.class));
         });
     }
