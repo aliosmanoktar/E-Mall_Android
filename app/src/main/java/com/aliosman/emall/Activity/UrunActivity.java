@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -55,6 +56,8 @@ public class UrunActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_urun);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
         imageList= findViewById(R.id.urun_layout_imageView);
         indicator=findViewById(R.id.urun_layout_pageIndicator);
         UrunAdi=findViewById(R.id.urun_layout_UrunAdi);
@@ -71,6 +74,14 @@ public class UrunActivity extends AppCompatActivity {
         SepeteEkle.setOnClickListener(SepeteEkleClick);
         UrunID = getIntent().getIntExtra(degiskenler.UrunShowIDBundleString,3);
         DownloadUrun(UrunID);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return false;
     }
 
     private void DownloadUrun(int UrunID){
