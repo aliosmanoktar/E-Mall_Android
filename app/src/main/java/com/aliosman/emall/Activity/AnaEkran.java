@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import com.aliosman.emall.Adapter.Dialog.adapter_image_dialog;
 import com.aliosman.emall.Fragment.*;
 import com.aliosman.emall.R;
 import com.aliosman.emall.degiskenler;
@@ -18,7 +16,6 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
 public class AnaEkran extends AppCompatActivity {
-
     private SearchView searchView;
     private final  String TAG = getClass().getName();
     private Fragment fr_anaEkran,fr_kategoriler,fr_hesabim;
@@ -69,8 +66,6 @@ public class AnaEkran extends AppCompatActivity {
         });
         menu_favori.setOnClickListener(v -> {
            menu.close(true);
-            adapter_image_dialog dialog = new adapter_image_dialog();
-            dialog.show(getSupportFragmentManager().beginTransaction(), "deneme");
            startActivity(new Intent(getBaseContext(),FavorilerActivity.class));
         });
     }
@@ -85,6 +80,7 @@ public class AnaEkran extends AppCompatActivity {
         return true;
 
     }
+
     private SearchView.OnQueryTextListener searchListener =new SearchView.OnQueryTextListener() {
         @Override
         public boolean onQueryTextSubmit(String s) {

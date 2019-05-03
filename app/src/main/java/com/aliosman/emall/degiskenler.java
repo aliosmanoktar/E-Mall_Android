@@ -20,14 +20,15 @@ public class degiskenler {
     public static final String UrunLislemeKategoriUrl =Url+"Urunler?KategoriID=";
     public static final String UrunLislemeAramaUrl =Url+"Urunler?aranan=";
     public static final String UrunGerUrunUrl = Url+"Urunler?UrunID=";
+    public static final String UrunGetBenzerUrunUrl = Url+"BenzerUrun?UrunID=";
     public static final String FavoriteGetUrl = Url+"Favorite?KullaniciID=";
     public static final String FavoriteDeleteIDUrl= Url+"Favorite?FavoriteID=";
     public static final String FavoriteClearAllUrl=Url+"Favorite?KullaniciID=";
     public static final String FavoritePostUrl = Url+"Favorite";
     public static final String FavoriteCheck=Url+"Favorite?KullaniciID=%d&UrunID=%d";
     public static final String SepetGetUrl = Url+"Sepet?KullaiciID=";
-    public static final String SepetDeleteIDUrl= Url+"Sepet?SepetID=";
-    public static final String SepetClearAllUrl=Url+"Sepet?KullaniciID=";
+    public static final String SepetDeleteIDUrl = Url+"Sepet?SepetID=";
+    public static final String SepetClearAllUrl =Url+"Sepet?KullaniciID=";
     public static final String SepetPostUrl = Url+"Sepet";
 
 }

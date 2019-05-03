@@ -11,13 +11,13 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import com.aliosman.emall.Adapter.Swipe.ReyclerItemSwipeHelper;
+import com.aliosman.emall.Adapter.Swipe.RecylerItemSwipeHelper;
 import com.aliosman.emall.Adapter.adapter_favorite;
 import com.aliosman.emall.Background.ModelDelete;
 import com.aliosman.emall.Background.ModelDownloadList;
 import com.aliosman.emall.Interface.DownloadInterface;
 import com.aliosman.emall.Interface.RecylerItemClick;
-import com.aliosman.emall.Interface.ReyclerItemSwipeListener;
+import com.aliosman.emall.Interface.RecylerItemSwipeListener;
 import com.aliosman.emall.Model.Get.Favorite;
 import com.aliosman.emall.R;
 import com.aliosman.emall.degiskenler;
@@ -38,7 +38,7 @@ public class FavorilerActivity extends AppCompatActivity {
         RootView=findViewById(R.id.favoriler_layout_RootView);
         recyclerView=findViewById(R.id.favoriler_layout_recylerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-        ItemTouchHelper.SimpleCallback swipeHelper = new ReyclerItemSwipeHelper(0,ItemTouchHelper.LEFT,swipeListener);
+        ItemTouchHelper.SimpleCallback swipeHelper = new RecylerItemSwipeHelper(0,ItemTouchHelper.LEFT,swipeListener);
         new ItemTouchHelper(swipeHelper).attachToRecyclerView(recyclerView);
         Button clearAll = findViewById(R.id.favoriler_layout_TumunuTemizle);
         clearAll.setOnClickListener(ClearAllClick);
@@ -83,7 +83,7 @@ public class FavorilerActivity extends AppCompatActivity {
         }
     };
 
-    private ReyclerItemSwipeListener swipeListener = (viewHolder, direction, position) -> {
+    private RecylerItemSwipeListener swipeListener = (viewHolder, direction, position) -> {
         Favorite item = (Favorite)viewHolder.itemView.getTag();
         adapter.removeItem(position);
         Snackbar snackbar= Snackbar.make(RootView,"Ürün Silindi",Snackbar.LENGTH_LONG);

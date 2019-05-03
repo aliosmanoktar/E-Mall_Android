@@ -6,14 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
-import com.aliosman.emall.Interface.ReyclerItemSwipeListener;
+import com.aliosman.emall.Interface.RecylerItemSwipeListener;
 
-public class ReyclerItemSwipeHelper extends ItemTouchHelper.SimpleCallback {
+public class RecylerItemSwipeHelper extends ItemTouchHelper.SimpleCallback {
 
     private String TAG = getClass().getName();
-    private ReyclerItemSwipeListener listener;
+    private RecylerItemSwipeListener listener;
 
-    public ReyclerItemSwipeHelper(int dragDirs, int swipeDirs,ReyclerItemSwipeListener listener) {
+    public RecylerItemSwipeHelper(int dragDirs, int swipeDirs, RecylerItemSwipeListener listener) {
         super(dragDirs, swipeDirs);
         this.listener=listener;
     }

@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Activity.SepetActivity"/>
         <activity android:name=".Activity.FavorilerActivity" />
-        <activity android:name=".Activity.UrunActivity" />
+        <activity android:name=".Activity.UrunActivity" android:theme="@style/AppTheme.TransparentTheme"/>
         <activity android:name=".Activity.UrunListeleme_Activity" />
         <activity android:name=".Activity.Login_Activity" />
         <activity android:name=".Activity.AnaEkran">

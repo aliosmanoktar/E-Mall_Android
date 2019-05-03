@@ -7,25 +7,31 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.aliosman.emall.Interface.RecylerItemClick;
 import com.aliosman.emall.Model.Get.Urun;
 import com.aliosman.emall.R;
 import com.squareup.picasso.Picasso;
+
 import java.util.List;
+
 import jp.shts.android.library.TriangleLabelView;
 
-public class adapter_urun_list extends RecyclerView.Adapter<adapter_urun_list.ViewHolder> {
+public class adapter_benzer_urunler extends RecyclerView.Adapter<adapter_benzer_urunler.ViewHolder> {
+
     private List<Urun> items;
     private RecylerItemClick<Urun> click;
     private RecylerItemClick<Urun> longClick;
-    public adapter_urun_list(List<Urun> items, RecylerItemClick<Urun> click,RecylerItemClick<Urun> longClick) {
+    private int height;
+    public adapter_benzer_urunler(List<Urun> items, RecylerItemClick<Urun> click,RecylerItemClick<Urun> longClick,int height) {
         this.items = items;
         this.click = click;
         this.longClick=longClick;
+        this.height=height;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder( ViewGroup viewGroup, int i) {
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_urun_listeleme,viewGroup,false);
         return new ViewHolder(view);
     }
@@ -50,6 +56,8 @@ public class adapter_urun_list extends RecyclerView.Adapter<adapter_urun_list.Vi
                 longClick.onclick(item);
                 return true;
             });
+        if (height!=-1)
+            viewHolder.layout.getLayoutParams().height=height;
         Picasso.get()
                 .load(item.getResimler().get(0))
                 .centerCrop().fit()
@@ -60,7 +68,6 @@ public class adapter_urun_list extends RecyclerView.Adapter<adapter_urun_list.Vi
     public int getItemCount() {
         return items.size();
     }
-
     class ViewHolder extends RecyclerView.ViewHolder{
         private TriangleLabelView IndirimOran;
         private TextView UrunAdi,EskiFiyat,Fiyat;

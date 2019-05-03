@@ -1,21 +1,28 @@
 package com.aliosman.emall.Activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.aliosman.emall.Adapter.Dialog.adapter_image_dialog;
+import com.aliosman.emall.Adapter.adapter_benzer_urunler;
 import com.aliosman.emall.Adapter.adapter_image_swipe;
 import com.aliosman.emall.Background.ModelDownloaSingle;
+import com.aliosman.emall.Background.ModelDownloadList;
 import com.aliosman.emall.Background.ModelPost;
+import com.aliosman.emall.Interface.DownloadInterface;
 import com.aliosman.emall.Interface.DownloadSingleInterface;
 import com.aliosman.emall.Interface.ImageClick;
 import com.aliosman.emall.Interface.PostInterface;
+import com.aliosman.emall.Interface.RecylerItemClick;
 import com.aliosman.emall.Model.Get.Favorite;
 import com.aliosman.emall.Model.Get.Sepet;
 import com.aliosman.emall.Model.Get.Urun;
@@ -24,6 +31,7 @@ import com.aliosman.emall.degiskenler;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeSuccessDialog;
+import com.github.ybq.android.spinkit.SpinKitView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +48,9 @@ public class UrunActivity extends AppCompatActivity {
     private TextView UrunAdi,UrunFiyat,UrunEskiFiyat;
     private int UrunID;
     private Button SepeteEkle,SatinAl;
+    private RecyclerView benzerUrunler;
+    private SpinKitView yukleniyor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,22 +63,41 @@ public class UrunActivity extends AppCompatActivity {
         favorite=findViewById(R.id.urun_layout_favori);
         UrunAdet=findViewById(R.id.urun_layout_UrunAdet);
         SepeteEkle=findViewById(R.id.urun_layout_SepetEkle);
+        benzerUrunler=findViewById(R.id.urun_layout_benzerUrunler);
+        yukleniyor=findViewById(R.id.urun_layout_yukleniyor);
+        benzerUrunler.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         UrunAdet.enableSideTap(true);
         UrunAdet.stepper.setMin(0);
         SepeteEkle.setOnClickListener(SepeteEkleClick);
-        UrunID =  getIntent().getIntExtra(degiskenler.UrunShowIDBundleString,5);
+        UrunID = getIntent().getIntExtra(degiskenler.UrunShowIDBundleString,3);
         DownloadUrun(UrunID);
     }
 
     private void DownloadUrun(int UrunID){
         new ModelDownloaSingle<Urun>(Urun.class,downloadInterface).execute(degiskenler.UrunGerUrunUrl+UrunID);
         new ModelDownloaSingle<Boolean>(Boolean.class,checkUrunInterface).execute(String.format(degiskenler.FavoriteCheck,48,UrunID));
+        new ModelDownloadList<Urun>(Urun[].class,downloadBenzerInterface).execute(degiskenler.UrunGetBenzerUrunUrl+UrunID);
     }
 
+    DownloadInterface<Urun> downloadBenzerInterface =new DownloadInterface<Urun>() {
+        @Override
+        public void Complete(List<Urun> items) {
+            int height=benzerUrunler.getHeight();
+            yukleniyor.setVisibility(View.GONE);
+            benzerUrunler.setAdapter(new adapter_benzer_urunler(items,urunClick,null,height));
+        }
+    };
+
+    RecylerItemClick<Urun> urunClick = item -> {
+        Intent i = new Intent(this, UrunActivity.class);
+        i.putExtra(degiskenler.UrunShowIDBundleString,item.getID());
+        startActivity(i);
+    };
     DownloadSingleInterface<Urun> downloadInterface = new DownloadSingleInterface<Urun>() {
         private Dialog dialog;
         @Override
         public void Start() {
+
             dialog=new AwesomeProgressDialog(UrunActivity.this)
                     .setTitle("Lütfen Bekleyiniz")
                     .setMessage("Ürün Alınıyor")
