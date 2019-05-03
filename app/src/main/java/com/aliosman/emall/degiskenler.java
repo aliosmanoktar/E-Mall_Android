@@ -3,8 +3,10 @@ package com.aliosman.emall;
 import okhttp3.MediaType;
 
 public class degiskenler {
-    private static final String Url="http://192.168.43.130/api/";
+    private static final String Url="http://192.168.42.249/api/";
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    public static final String SharedNameString="Ayarlar";
+    public static final String KullaniciSharedString="Kullanici";
     public static final String UrunKategoriBundleString ="KategoriID";
     public static final String UrunArananBundleString="arama";
     public static final String UrunShowIDBundleString="UrunID";

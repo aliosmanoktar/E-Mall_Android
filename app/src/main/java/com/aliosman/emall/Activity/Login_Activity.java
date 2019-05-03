@@ -1,5 +1,6 @@
 package com.aliosman.emall.Activity;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import com.aliosman.emall.Fragment.fragment_hesabim;
 import com.aliosman.emall.Fragment.fragment_kategoriler;
 import com.aliosman.emall.Fragment.fragment_login;
 import com.aliosman.emall.Fragment.fragment_register;
+import com.aliosman.emall.Preferences;
 import com.aliosman.emall.R;
 import com.gigamole.navigationtabstrip.NavigationTabStrip;
 
@@ -18,6 +20,8 @@ public class Login_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        if (Preferences.GetKullanici(this)!=null)
+            ShowAnaEkran();
         NavigationTabStrip navigationTabStrip=findViewById(R.id.login_ekran_navigation);
         navigationTabStrip.setOnTabStripSelectedIndexListener(new NavigationTabStrip.OnTabStripSelectedIndexListener() {
             @Override
@@ -43,5 +47,10 @@ public class Login_Activity extends AppCompatActivity {
         transaction.replace(R.id.login_ekran_framelayout,new fragment_login());
         transaction.commitAllowingStateLoss();
         getSupportActionBar().hide();
+    }
+    private void ShowAnaEkran(){
+        Intent i = new Intent(getBaseContext(),AnaEkran.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
     }
 }

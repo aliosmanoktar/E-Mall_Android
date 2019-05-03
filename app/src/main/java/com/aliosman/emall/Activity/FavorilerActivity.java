@@ -19,6 +19,8 @@ import com.aliosman.emall.Interface.DownloadInterface;
 import com.aliosman.emall.Interface.RecylerItemClick;
 import com.aliosman.emall.Interface.RecylerItemSwipeListener;
 import com.aliosman.emall.Model.Get.Favorite;
+import com.aliosman.emall.Model.Kullanici;
+import com.aliosman.emall.Preferences;
 import com.aliosman.emall.R;
 import com.aliosman.emall.degiskenler;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeInfoDialog;
@@ -31,6 +33,7 @@ public class FavorilerActivity extends AppCompatActivity {
     private String TAG=getClass().getName();
     private View RootView;
     private adapter_favorite adapter;
+    private Kullanici kullanici;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,13 +41,38 @@ public class FavorilerActivity extends AppCompatActivity {
         RootView=findViewById(R.id.favoriler_layout_RootView);
         recyclerView=findViewById(R.id.favoriler_layout_recylerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+        kullanici= Preferences.GetKullanici(getBaseContext());
         ItemTouchHelper.SimpleCallback swipeHelper = new RecylerItemSwipeHelper(0,ItemTouchHelper.LEFT,swipeListener);
         new ItemTouchHelper(swipeHelper).attachToRecyclerView(recyclerView);
         Button clearAll = findViewById(R.id.favoriler_layout_TumunuTemizle);
-        clearAll.setOnClickListener(ClearAllClick);
-        new ModelDownloadList<Favorite>(Favorite[].class,downloadInterface).execute(degiskenler.FavoriteGetUrl+48);
-    }
+        if (kullanici!=null) {
+            clearAll.setOnClickListener(ClearAllClick);
+            new ModelDownloadList<Favorite>(Favorite[].class, downloadInterface).execute(degiskenler.FavoriteGetUrl + kullanici.getID());
+        }else ShowNotLoginDialog();
 
+    }
+    private void ShowNotLoginDialog(){
+        new AwesomeInfoDialog(this)
+                .setPositiveButtonText("Geç")
+                .setNegativeButtonText("Giriş Yap")
+                .setNegativeButtonTextColor(R.color.colorWhite)
+                .setPositiveButtonbackgroundColor(R.color.colorRed)
+                .setNegativeButtonbackgroundColor(R.color.colorGreen)
+                .setTitle("Uyarı")
+                .setMessage("Favorilerim Özelliğini Kullanabilmeniz için giriş yapmanız gereklidir")
+                .setPositiveButtonClick(() -> {
+
+                })
+                .setNegativeButtonClick(() -> {
+                    StartLoginActivity();
+                }).show();
+
+    }
+    private void StartLoginActivity(){
+        Intent i = new Intent(getBaseContext(),Login_Activity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+    }
     private View.OnClickListener ClearAllClick = v -> {
         new AwesomeInfoDialog(this)
                 .setPositiveButtonText("Evet")

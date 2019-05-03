@@ -13,14 +13,13 @@
                 android:id="@+id/urun_image_dialog_layout.viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="#8e212121"/>
+                android:background="#8e212121" />
+
             <me.relex.circleindicator.CircleIndicator
                 android:id="@+id/urun_image_dialog_layout.pageIndicator"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_alignParentBottom="true"
-                />
+                android:layout_alignParentBottom="true" />
 
         </RelativeLayout>
     </FrameLayout>

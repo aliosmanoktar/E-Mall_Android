@@ -25,9 +25,12 @@ import com.aliosman.emall.Interface.UrunFilterType;
 import com.aliosman.emall.Model.Get.Favorite;
 import com.aliosman.emall.Model.Get.Sepet;
 import com.aliosman.emall.Model.Get.Urun;
+import com.aliosman.emall.Model.Kullanici;
+import com.aliosman.emall.Preferences;
 import com.aliosman.emall.R;
 import com.aliosman.emall.degiskenler;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorDialog;
+import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeInfoDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeSuccessDialog;
 
@@ -41,11 +44,12 @@ public class UrunListeleme_Activity extends AppCompatActivity {
     private String TAG=getClass().getName();
     private TextView txt_adet;
     private ImageView img_fiter;
-
+    private Kullanici kullanici;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_urun_listeleme);
+        kullanici= Preferences.GetKullanici(getBaseContext());
         recyclerView = findViewById(R.id.urun_listeleme_layout_recyler);
         txt_adet=findViewById(R.id.urun_listeleme_layout_UrunAdet);
         img_fiter=findViewById(R.id.urun_listeleme_layout_filter);
@@ -128,9 +132,34 @@ public class UrunListeleme_Activity extends AppCompatActivity {
 
     private RecylerItemClick<Urun> ItemLongClick = item -> {
         Log.e(TAG, "ItemLongClick: "+item.getID()+" "+item.getAdi());
-        new adapter_urun_action_dialog(urunAction,this,item).Show();
+        if (kullanici!=null)
+            new adapter_urun_action_dialog(urunAction,this,item).Show();
+        else ShowNotLoginDialog("Sepetim ve Favorilerm Özelliğini Kullanabilmeniz için giriş yapmanız gereklidir");
     };
 
+    private void ShowNotLoginDialog(String message){
+        new AwesomeInfoDialog(this)
+                .setPositiveButtonText("Geç")
+                .setNegativeButtonText("Giriş Yap")
+                .setNegativeButtonTextColor(R.color.colorWhite)
+                .setPositiveButtonbackgroundColor(R.color.colorRed)
+                .setNegativeButtonbackgroundColor(R.color.colorGreen)
+                .setTitle("Uyarı")
+                .setMessage(message)
+                .setPositiveButtonClick(() -> {
+
+                })
+                .setNegativeButtonClick(() -> {
+                    StartLoginActivity();
+                }).show();
+
+    }
+
+    private void StartLoginActivity(){
+        Intent i = new Intent(getBaseContext(),Login_Activity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+    }
     private ActionUrunFilterInterface SetFilter = type -> {
         Collections.sort(uruns, type == UrunFilterType.AzalanFiyat ? new UrunFiyatAzalanComprator() : new UrunFiyatArtanComprator());
         SetAdapter(uruns);

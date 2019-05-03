@@ -27,13 +27,15 @@ import com.aliosman.emall.Interface.RecylerItemClick;
 import com.aliosman.emall.Model.Get.Favorite;
 import com.aliosman.emall.Model.Get.Sepet;
 import com.aliosman.emall.Model.Get.Urun;
+import com.aliosman.emall.Model.Kullanici;
+import com.aliosman.emall.Preferences;
 import com.aliosman.emall.R;
 import com.aliosman.emall.degiskenler;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorDialog;
+import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeInfoDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeSuccessDialog;
 import com.github.ybq.android.spinkit.SpinKitView;
-
 import java.util.ArrayList;
 import java.util.List;
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
@@ -41,6 +43,7 @@ import me.relex.circleindicator.CircleIndicator;
 import nl.dionsegijn.steppertouch.StepperTouch;
 
 public class UrunActivity extends AppCompatActivity {
+
     private AutoScrollViewPager imageList;
     private String TAG=getClass().getName();
     private CircleIndicator indicator;
@@ -51,11 +54,13 @@ public class UrunActivity extends AppCompatActivity {
     private Button SepeteEkle,SatinAl;
     private RecyclerView benzerUrunler;
     private SpinKitView yukleniyor;
+    private Kullanici kullanici;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_urun);
+        kullanici= Preferences.GetKullanici(getBaseContext());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
         imageList= findViewById(R.id.urun_layout_imageView);
@@ -84,9 +89,34 @@ public class UrunActivity extends AppCompatActivity {
         return false;
     }
 
+    private void ShowNotLoginDialog(String message){
+        new AwesomeInfoDialog(this)
+                .setPositiveButtonText("Geç")
+                .setNegativeButtonText("Giriş Yap")
+                .setNegativeButtonTextColor(R.color.colorWhite)
+                .setPositiveButtonbackgroundColor(R.color.colorRed)
+                .setNegativeButtonbackgroundColor(R.color.colorGreen)
+                .setTitle("Uyarı")
+                .setMessage(message)
+                .setPositiveButtonClick(() -> {
+
+                })
+                .setNegativeButtonClick(() -> {
+                    StartLoginActivity();
+                }).show();
+
+    }
+
+    private void StartLoginActivity(){
+        Intent i = new Intent(getBaseContext(),Login_Activity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+    }
+
     private void DownloadUrun(int UrunID){
         new ModelDownloaSingle<Urun>(Urun.class,downloadInterface).execute(degiskenler.UrunGerUrunUrl+UrunID);
-        new ModelDownloaSingle<Boolean>(Boolean.class,checkUrunInterface).execute(String.format(degiskenler.FavoriteCheck,48,UrunID));
+        if (kullanici!=null)
+            new ModelDownloaSingle<Boolean>(Boolean.class,checkUrunInterface).execute(String.format(degiskenler.FavoriteCheck,kullanici.getID(),UrunID));
         new ModelDownloadList<Urun>(Urun[].class,downloadBenzerInterface).execute(degiskenler.UrunGetBenzerUrunUrl+UrunID);
     }
 
@@ -104,6 +134,7 @@ public class UrunActivity extends AppCompatActivity {
         i.putExtra(degiskenler.UrunShowIDBundleString,item.getID());
         startActivity(i);
     };
+
     DownloadSingleInterface<Urun> downloadInterface = new DownloadSingleInterface<Urun>() {
         private Dialog dialog;
         @Override
@@ -162,16 +193,22 @@ public class UrunActivity extends AppCompatActivity {
     };
 
     private View.OnClickListener SepeteEkleClick = v -> {
-        if (UrunAdet.stepper.getValue()!=0)
-            new ModelPost(postInterface).execute(degiskenler.SepetPostUrl,new Sepet()
-                    .setKullaniciID(48).setUrunID(UrunID).setAdet(UrunAdet.stepper.getValue()).toString());
+        if (UrunAdet.stepper.getValue()!=0){
+            if (kullanici!=null)
+                new ModelPost(postInterface).execute(degiskenler.SepetPostUrl,new Sepet()
+                        .setKullaniciID(kullanici.getID()).setUrunID(UrunID).setAdet(UrunAdet.stepper.getValue()).toString());
+            else
+                ShowNotLoginDialog("Sepetim Özelliğini Kullanabilmeniz için giriş yapmanız gereklidir");
+        }
         else
             postInterface.Post(500,"Urun Adeti 0 Olamaz!");
     };
 
     private View.OnClickListener favoriteClick = v -> {
-        new ModelPost(postInterface).execute(degiskenler.FavoritePostUrl,new Favorite()
-                .setKullaniciID(48).setUrunID(UrunID).toString());
+        if (kullanici!=null)
+            new ModelPost(postInterface).execute(degiskenler.FavoritePostUrl,new Favorite()
+                    .setKullaniciID(kullanici.getID()).setUrunID(UrunID).toString());
+        else ShowNotLoginDialog("Favorilerim Özelliğini Kullanabilmeniz için giriş yapmanız gereklidir");
 
     };
 

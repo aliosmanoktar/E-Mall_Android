@@ -1,7 +1,5 @@
 package com.aliosman.emall.Model.Post;
 
-import androidx.annotation.NonNull;
-
 import com.google.gson.Gson;
 
 public class Login {
