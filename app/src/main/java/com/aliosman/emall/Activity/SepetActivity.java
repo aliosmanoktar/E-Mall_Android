@@ -47,12 +47,13 @@ public class SepetActivity extends AppCompatActivity {
         ItemTouchHelper.SimpleCallback swipeHelper = new RecylerItemSwipeHelper(0,ItemTouchHelper.LEFT,swipeListener);
         new ItemTouchHelper(swipeHelper).attachToRecyclerView(recyclerView);
         Button clearAll = findViewById(R.id.sepet_layout_TumunuTemizle);
+        Button SatinAl = findViewById(R.id.sepet_layout_satinAl);
         if (kullanici!=null) {
+            SatinAl.setOnClickListener(satinAlClick);
             clearAll.setOnClickListener(ClearAllClick);
             new ModelDownloadList<Sepet>(Sepet[].class, downloadInterface).execute(degiskenler.SepetGetUrl + kullanici.getID());
         }else ShowNotLoginDialog();
     }
-
     private void ShowNotLoginDialog(){
         new AwesomeInfoDialog(this)
                 .setPositiveButtonText("Geç")
@@ -145,5 +146,9 @@ public class SepetActivity extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(),UrunActivity.class);
         i.putExtra(degiskenler.UrunShowIDBundleString,item.getUrunID());
         startActivity(i);
+    };
+
+    private View.OnClickListener satinAlClick = v -> {
+      startActivity(new Intent(getBaseContext(),SatinAlActivity.class));
     };
 }

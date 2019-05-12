@@ -8,19 +8,15 @@ import android.support.v4.app.FragmentManager;
 import com.aliosman.emall.Fragment.fragment_satis_adres_list;
 import com.aliosman.emall.Fragment.fragment_satis_urun_list;
 import com.aliosman.emall.Interface.IStepperListener;
-import com.aliosman.emall.degiskenler;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.adapter.AbstractFragmentStepAdapter;
 import com.stepstone.stepper.viewmodel.StepViewModel;
 
 public class adapter_stepper_pager extends AbstractFragmentStepAdapter {
     private IStepperListener listener;
-    private Bundle bundle;
     public adapter_stepper_pager(@NonNull FragmentManager fm, @NonNull Context context,IStepperListener listener) {
         super(fm, context);
         this.listener=listener;
-        bundle=new Bundle();
-        bundle.putSerializable(degiskenler.StepperListenerBundle,listener);
     }
 
     @Override

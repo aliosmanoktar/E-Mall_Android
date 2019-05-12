@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SatinAlActivity extends AppCompatActivity {
-
     private StepperLayout layout;
     private String TAG = getClass().getName();
     private List<Sepet> urunler=new ArrayList<>();
