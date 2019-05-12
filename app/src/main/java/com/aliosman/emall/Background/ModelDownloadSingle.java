@@ -10,13 +10,13 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class ModelDownloaSingle<T> extends AsyncTask<String,Void, T> {
+public class ModelDownloadSingle<T> extends AsyncTask<String,Void, T> {
 
     private final String TAG =getClass().getName();
     private final Class JsonParseClassType;
     private DownloadSingleInterface<T> finish;
 
-    public ModelDownloaSingle(Class JsonParseClassType, DownloadSingleInterface finish){
+    public ModelDownloadSingle(Class JsonParseClassType, DownloadSingleInterface finish){
         this.JsonParseClassType = JsonParseClassType;
         this.finish=finish;
     }

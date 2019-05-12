@@ -9,6 +9,7 @@
     </style>
 
     <style name="AppTheme.TransparentTheme" parent="Theme.AppCompat.Light">
+
         <item name="colorPrimary">@android:color/transparent</item>
         <item name="windowActionBarOverlay">true</item>
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
@@ -31,5 +32,4 @@
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
 
     </style>
-
 </resources>

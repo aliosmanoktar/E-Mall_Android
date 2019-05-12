@@ -45,4 +45,5 @@ dependencies {
     implementation 'com.github.DanielMartinus:Stepper-Touch:0.6'
     implementation 'me.relex:circleindicator:1.2.2'
     implementation 'com.github.ybq:Android-SpinKit:1.2.0'
+    implementation 'com.stepstone.stepper:material-stepper:4.3.1'
 }

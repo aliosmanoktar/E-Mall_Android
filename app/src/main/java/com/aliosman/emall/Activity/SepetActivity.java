@@ -35,6 +35,7 @@ public class SepetActivity extends AppCompatActivity {
     private View RootView;
     private adapter_sepet adapter;
     private Kullanici kullanici;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +52,7 @@ public class SepetActivity extends AppCompatActivity {
             new ModelDownloadList<Sepet>(Sepet[].class, downloadInterface).execute(degiskenler.SepetGetUrl + kullanici.getID());
         }else ShowNotLoginDialog();
     }
+
     private void ShowNotLoginDialog(){
         new AwesomeInfoDialog(this)
                 .setPositiveButtonText("Geç")
@@ -68,11 +70,13 @@ public class SepetActivity extends AppCompatActivity {
                 }).show();
 
     }
+
     private void StartLoginActivity(){
         Intent i = new Intent(getBaseContext(),Login_Activity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
     }
+
     private View.OnClickListener ClearAllClick = v -> {
         new AwesomeInfoDialog(this)
                 .setPositiveButtonText("Evet")

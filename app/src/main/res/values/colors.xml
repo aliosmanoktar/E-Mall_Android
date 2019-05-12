@@ -12,4 +12,5 @@
     <color name="navigatonSelectColor">#E64949</color>
     <color name="bakcground_black_transparent">#B8ACAC</color>
     <color name="colorGreen">#009688</color>
+    <color name="colorReyclerItemSelect">#A8009688</color>
 </resources>

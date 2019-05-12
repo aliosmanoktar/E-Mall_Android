@@ -37,7 +37,8 @@ public class adapter_sepet extends RecyclerView.Adapter<adapter_sepet.ViewHolder
         viewHolder.urunFiyat.setText(item.getUrun().getFiyat()+" ₺");
         viewHolder.urunToplam.setText(item.getUrun().getFiyat()+"₺ x "+ item.getAdet()+" = "+(item.getUrun().getFiyat()*item.getAdet())+ " ₺");
         viewHolder.frg_view.setOnClickListener(v -> {
-            click.onclick(item);
+            if (click!=null)
+                click.onclick(item);
         });
         Picasso.get()
                 .load(item.getUrun().getResimler().get(0))

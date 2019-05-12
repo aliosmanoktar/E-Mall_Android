@@ -6,17 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.aliosman.emall.Adapter.Dialog.adapter_image_dialog;
 import com.aliosman.emall.Adapter.adapter_benzer_urunler;
 import com.aliosman.emall.Adapter.adapter_image_swipe;
-import com.aliosman.emall.Background.ModelDownloaSingle;
+import com.aliosman.emall.Background.ModelDownloadSingle;
 import com.aliosman.emall.Background.ModelDownloadList;
 import com.aliosman.emall.Background.ModelPost;
 import com.aliosman.emall.Interface.DownloadInterface;
@@ -73,10 +71,12 @@ public class UrunActivity extends AppCompatActivity {
         SepeteEkle=findViewById(R.id.urun_layout_SepetEkle);
         benzerUrunler=findViewById(R.id.urun_layout_benzerUrunler);
         yukleniyor=findViewById(R.id.urun_layout_yukleniyor);
+        SatinAl=findViewById(R.id.urun_layout_SatinAl);
         benzerUrunler.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         UrunAdet.enableSideTap(true);
         UrunAdet.stepper.setMin(0);
         SepeteEkle.setOnClickListener(SepeteEkleClick);
+        SatinAl.setOnClickListener(satinAlClick);
         UrunID = getIntent().getIntExtra(degiskenler.UrunShowIDBundleString,3);
         DownloadUrun(UrunID);
     }
@@ -114,9 +114,9 @@ public class UrunActivity extends AppCompatActivity {
     }
 
     private void DownloadUrun(int UrunID){
-        new ModelDownloaSingle<Urun>(Urun.class,downloadInterface).execute(degiskenler.UrunGerUrunUrl+UrunID);
+        new ModelDownloadSingle<Urun>(Urun.class,downloadInterface).execute(degiskenler.UrunGerUrunUrl+UrunID);
         if (kullanici!=null)
-            new ModelDownloaSingle<Boolean>(Boolean.class,checkUrunInterface).execute(String.format(degiskenler.FavoriteCheck,kullanici.getID(),UrunID));
+            new ModelDownloadSingle<Boolean>(Boolean.class,checkUrunInterface).execute(String.format(degiskenler.FavoriteCheck,kullanici.getID(),UrunID));
         new ModelDownloadList<Urun>(Urun[].class,downloadBenzerInterface).execute(degiskenler.UrunGetBenzerUrunUrl+UrunID);
     }
 
@@ -203,7 +203,38 @@ public class UrunActivity extends AppCompatActivity {
         else
             postInterface.Post(500,"Urun Adeti 0 Olamaz!");
     };
+    private PostInterface SatinAlInterface = new PostInterface() {
+        Dialog dialog;
+        @Override
+        public void Start() {
+            dialog=new AwesomeProgressDialog(UrunActivity.this)
+                    .setCancelable(false)
+                    .setTitle("Bekleyiniz")
+                    .setMessage("Ürün Ekleniyor")
+                    .show();
 
+        }
+
+
+        @Override
+        public void Post(int code, String value) {
+            if (dialog!=null)
+                dialog.dismiss();
+            startActivity(new Intent(getBaseContext(),SatinAlActivity.class));
+        }
+    };
+
+    private View.OnClickListener satinAlClick = v -> {
+        if (UrunAdet.stepper.getValue()!=0){
+            if (kullanici!=null)
+                new ModelPost(SatinAlInterface).execute(degiskenler.SepetPostUrl,new Sepet()
+                        .setKullaniciID(kullanici.getID()).setUrunID(UrunID).setAdet(UrunAdet.stepper.getValue()).toString());
+            else
+                ShowNotLoginDialog("Satın Alma Özelliğini Kullanabilmeniz için giriş yapmanız gereklidir");
+        }
+        else
+            postInterface.Post(500,"Urun Adeti 0 Olamaz!");
+    };
     private View.OnClickListener favoriteClick = v -> {
         if (kullanici!=null)
             new ModelPost(postInterface).execute(degiskenler.FavoritePostUrl,new Favorite()
