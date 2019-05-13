@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.SiparisActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <iammert.com.expandablelib.ExpandableLayout
+            android:id="@+id/activity_siparis_expandableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:parentLayout="@layout/item_siparis_parent_layout"
+            app:childLayout="@layout/item_sepet_urun"
+            />
+
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

@@ -3,18 +3,14 @@ package com.aliosman.emall.Activity;
 import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.aliosman.emall.Adapter.adapter_stepper_pager;
 import com.aliosman.emall.Background.ModelPost;
 import com.aliosman.emall.Interface.IStepperListener;
 import com.aliosman.emall.Interface.PostInterface;
-import com.aliosman.emall.Model.Get.Adres;
 import com.aliosman.emall.Model.Get.Sepet;
-import com.aliosman.emall.Model.Get.Urun;
 import com.aliosman.emall.Model.Post.Satis;
-import com.aliosman.emall.Preferences;
 import com.aliosman.emall.R;
 import com.aliosman.emall.degiskenler;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorDialog;
@@ -53,7 +49,7 @@ public class SatinAlActivity extends AppCompatActivity {
     StepperLayout.StepperListener completeListener = new StepperLayout.StepperListener() {
         @Override
         public void onCompleted(View completeButton) {
-            new ModelPost(postInterface).execute(degiskenler.SatisPostUrl,new Satis().setAdresID(AdresID).setItems(urunler).setKullaniciID(48).toString());
+            new ModelPost(postInterface).execute(degiskenler.SiparisPostUrl,new Satis().setAdresID(AdresID).setItems(urunler).setKullaniciID(48).toString());
         }
 
         @Override

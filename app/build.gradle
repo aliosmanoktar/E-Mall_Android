@@ -46,4 +46,5 @@ dependencies {
     implementation 'me.relex:circleindicator:1.2.2'
     implementation 'com.github.ybq:Android-SpinKit:1.2.0'
     implementation 'com.stepstone.stepper:material-stepper:4.3.1'
+    implementation 'com.github.iammert:ExpandableLayout:1.4.1'
 }

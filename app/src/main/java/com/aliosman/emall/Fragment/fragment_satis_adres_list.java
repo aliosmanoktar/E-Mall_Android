@@ -7,20 +7,17 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.aliosman.emall.Adapter.Swipe.RecylerItemSwipeHelper;
 import com.aliosman.emall.Adapter.adapter_adres;
 import com.aliosman.emall.Background.ModelDownloadList;
 import com.aliosman.emall.Interface.DownloadInterface;
 import com.aliosman.emall.Interface.IStepperListener;
 import com.aliosman.emall.Interface.RecylerItemClick;
-import com.aliosman.emall.Interface.RecylerItemSwipeListener;
 import com.aliosman.emall.Model.Get.Adres;
 import com.aliosman.emall.R;
 import com.aliosman.emall.degiskenler;
@@ -66,7 +63,7 @@ public class fragment_satis_adres_list extends Fragment implements Step {
 
     @Override
     public void onSelected() {
-        new ModelDownloadList<Adres>(Adres[].class,adresDownload).execute(degiskenler.GetAdressUrl+KullaniciID);
+        new ModelDownloadList<Adres>(Adres[].class,adresDownload).execute(degiskenler.AdressGetUrl +KullaniciID);
     }
     private RecylerItemClick<Adres> click= item -> {
         if (item.getID()==AdresID)

@@ -54,6 +54,7 @@ public class SepetActivity extends AppCompatActivity {
             new ModelDownloadList<Sepet>(Sepet[].class, downloadInterface).execute(degiskenler.SepetGetUrl + kullanici.getID());
         }else ShowNotLoginDialog();
     }
+
     private void ShowNotLoginDialog(){
         new AwesomeInfoDialog(this)
                 .setPositiveButtonText("Geç")

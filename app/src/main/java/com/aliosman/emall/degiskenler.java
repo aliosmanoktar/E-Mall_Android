@@ -4,7 +4,7 @@ import okhttp3.MediaType;
 
 public class degiskenler {
 
-    private static final String Url="http://192.168.42.125/api/";
+    private static final String Url="http://192.168.42.108/api/";
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     public static final String SharedNameString="Ayarlar";
     public static final String KullaniciSharedString="Kullanici";
@@ -34,6 +34,7 @@ public class degiskenler {
     public static final String SepetDeleteIDUrl = Url+"Sepet?SepetID=";
     public static final String SepetClearAllUrl =Url+"Sepet?KullaniciID=";
     public static final String SepetPostUrl = Url+"Sepet";
-    public static final String SatisPostUrl= Url+"SatinAl";
-    public static final String GetAdressUrl=Url+"Adres?KullaniciID=";
+    public static final String SiparisPostUrl = Url+"Siparis";
+    public static final String SipariGetUrl = Url+"Siparis?KullaniciID=";
+    public static final String AdressGetUrl =Url+"Adres?KullaniciID=";
 }

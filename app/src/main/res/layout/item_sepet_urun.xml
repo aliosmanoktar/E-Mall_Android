@@ -45,13 +45,12 @@
             android:orientation="horizontal"
             >
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="match_parent">
                 <ImageView
                     android:layout_gravity="center"
-                    android:scaleType="center"
                     android:id="@+id/item_sepet.urunImage"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@drawable/urun_hazirlaniyor"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </LinearLayout>
