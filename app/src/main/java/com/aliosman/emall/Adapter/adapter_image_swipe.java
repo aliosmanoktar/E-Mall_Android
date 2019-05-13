@@ -37,6 +37,7 @@ public class adapter_image_swipe extends PagerAdapter {
                 .load(resimler.get(position))
                 .centerCrop()
                 .fit()
+                .placeholder(R.drawable.urun_hazirlaniyor)
                 .error(R.drawable.urun_hazirlaniyor)
                 .into(ig);
         return view;

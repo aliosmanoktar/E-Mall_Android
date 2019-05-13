@@ -45,6 +45,7 @@ public class adapter_indirim_urun extends RecyclerView.Adapter<adapter_indirim_u
         Picasso.get()
                 .load(item.getResimler().get(0))
                 .centerCrop()
+                .placeholder(R.drawable.urun_hazirlaniyor)
                 .error(R.drawable.urun_hazirlaniyor)
                 .fit().into(viewHolder.urunImage);
     }

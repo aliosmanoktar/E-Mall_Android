@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -45,10 +46,12 @@ public class UrunListeleme_Activity extends AppCompatActivity {
     private TextView txt_adet;
     private ImageView img_fiter;
     private Kullanici kullanici;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_urun_listeleme);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         kullanici= Preferences.GetKullanici(getBaseContext());
         recyclerView = findViewById(R.id.urun_listeleme_layout_recyler);
         txt_adet=findViewById(R.id.urun_listeleme_layout_UrunAdet);
@@ -160,6 +163,7 @@ public class UrunListeleme_Activity extends AppCompatActivity {
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
     }
+
     private ActionUrunFilterInterface SetFilter = type -> {
         Collections.sort(uruns, type == UrunFilterType.AzalanFiyat ? new UrunFiyatAzalanComprator() : new UrunFiyatArtanComprator());
         SetAdapter(uruns);
@@ -187,4 +191,12 @@ public class UrunListeleme_Activity extends AppCompatActivity {
             SetAdapter(items);
         }
     };
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return false;
+    }
 }

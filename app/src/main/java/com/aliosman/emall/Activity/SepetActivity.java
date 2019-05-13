@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import com.aliosman.emall.Adapter.Swipe.RecylerItemSwipeHelper;
@@ -40,6 +41,7 @@ public class SepetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sepet);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         kullanici= Preferences.GetKullanici(getBaseContext());
         RootView=findViewById(R.id.sepet_layout_RootView);
         recyclerView=findViewById(R.id.sepet_layout_recylerview);
@@ -152,4 +154,12 @@ public class SepetActivity extends AppCompatActivity {
     private View.OnClickListener satinAlClick = v -> {
       startActivity(new Intent(getBaseContext(),SatinAlActivity.class));
     };
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return false;
+    }
 }

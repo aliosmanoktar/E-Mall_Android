@@ -42,6 +42,7 @@ public class adapter_populer_urun extends RecyclerView.Adapter<adapter_populer_u
         Picasso.get()
                 .load(item.getResimler().get(0))
                 .centerCrop()
+                .placeholder(R.drawable.urun_hazirlaniyor)
                 .error(R.drawable.urun_hazirlaniyor)
                 .fit().into(viewHolder.urunImage);
         viewHolder.layout.setTag(item);

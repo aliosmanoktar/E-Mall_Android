@@ -53,6 +53,8 @@ public class adapter_urun_list extends RecyclerView.Adapter<adapter_urun_list.Vi
         Picasso.get()
                 .load(item.getResimler().get(0))
                 .centerCrop().fit()
+                .placeholder(R.drawable.urun_hazirlaniyor)
+                .error(R.drawable.urun_hazirlaniyor)
                 .into(viewHolder.UrunImage);
     }
 

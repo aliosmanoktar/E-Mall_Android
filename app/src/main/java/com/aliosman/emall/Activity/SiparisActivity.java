@@ -3,6 +3,7 @@ package com.aliosman.emall.Activity;
 import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,6 +31,7 @@ public class SiparisActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_siparis);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         expandableLayout=findViewById(R.id.activity_siparis_expandableLayout);
         expandableLayout.setRenderer(renderer);
         expandableLayout.setExpandListener(expandListener);
@@ -123,4 +125,13 @@ public class SiparisActivity extends AppCompatActivity {
             section.children.add(sepetItem);
         return section;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return false;
+    }
+
 }

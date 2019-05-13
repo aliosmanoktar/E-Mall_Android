@@ -3,6 +3,7 @@ package com.aliosman.emall.Activity;
 import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.aliosman.emall.Adapter.adapter_stepper_pager;
@@ -23,14 +24,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SatinAlActivity extends AppCompatActivity {
+
     private StepperLayout layout;
     private String TAG = getClass().getName();
     private List<Sepet> urunler=new ArrayList<>();
     private int AdresID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_satin_al);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         layout=findViewById(R.id.satinAl_layout_stepperlayout);
         layout.setShowErrorMessageEnabled(true);
         layout.setShowErrorStateEnabled(true);
@@ -68,7 +72,6 @@ public class SatinAlActivity extends AppCompatActivity {
         }
     };
 
-
     private PostInterface postInterface=new PostInterface() {
         private Dialog dialog;
         @Override
@@ -104,4 +107,12 @@ public class SatinAlActivity extends AppCompatActivity {
             }
         }
     };
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return false;
+    }
 }

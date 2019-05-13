@@ -46,6 +46,7 @@ public class adapter_dialog_image_swipe extends PagerAdapter {
         (container).addView(view);
         Picasso.get()
                 .load(resimler.get(position))
+                .placeholder(R.drawable.urun_hazirlaniyor)
                 .error(R.drawable.urun_hazirlaniyor)
                 .into(ig);
         return view;

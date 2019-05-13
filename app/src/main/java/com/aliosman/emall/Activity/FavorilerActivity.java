@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import com.aliosman.emall.Adapter.Swipe.RecylerItemSwipeHelper;
@@ -38,6 +39,7 @@ public class FavorilerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favoriler);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         RootView=findViewById(R.id.favoriler_layout_RootView);
         recyclerView=findViewById(R.id.favoriler_layout_recylerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
@@ -51,6 +53,7 @@ public class FavorilerActivity extends AppCompatActivity {
         }else ShowNotLoginDialog();
 
     }
+
     private void ShowNotLoginDialog(){
         new AwesomeInfoDialog(this)
                 .setPositiveButtonText("Geç")
@@ -68,11 +71,13 @@ public class FavorilerActivity extends AppCompatActivity {
                 }).show();
 
     }
+
     private void StartLoginActivity(){
         Intent i = new Intent(getBaseContext(),Login_Activity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
     }
+
     private View.OnClickListener ClearAllClick = v -> {
         new AwesomeInfoDialog(this)
                 .setPositiveButtonText("Evet")
@@ -136,9 +141,18 @@ public class FavorilerActivity extends AppCompatActivity {
         adapter=new adapter_favorite(favorites,favoriteItemClick);
         recyclerView.setAdapter(adapter);
     }
+
     private RecylerItemClick<Favorite> favoriteItemClick = item -> {
         Intent i = new Intent(getApplicationContext(),UrunActivity.class);
         i.putExtra(degiskenler.UrunShowIDBundleString,item.getUrunID());
         startActivity(i);
     };
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return false;
+    }
 }

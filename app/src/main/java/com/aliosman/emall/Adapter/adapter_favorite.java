@@ -41,6 +41,8 @@ public class adapter_favorite extends RecyclerView.Adapter<adapter_favorite.View
         Picasso.get()
                 .load(item.getUrun().getResimler().get(0))
                 .centerCrop()
+                .placeholder(R.drawable.urun_hazirlaniyor)
+                .error(R.drawable.urun_hazirlaniyor)
                 .fit().into(viewHolder.urunImage);
     }
 
