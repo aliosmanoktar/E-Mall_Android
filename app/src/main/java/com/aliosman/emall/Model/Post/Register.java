@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import java.util.Date;
 
 public class Register {
-
+    private int ID;
     private String Telefon;
     private String KullaniciAdi;
     private String Email;
@@ -14,6 +14,10 @@ public class Register {
     private String Sifre;
     private Date DogumGunu;
     private String Cinsiyet;
+
+    public int getID() {
+        return ID;
+    }
 
     public String getTelefon() {
         return Telefon;
@@ -45,6 +49,11 @@ public class Register {
 
     public String isCinsiyet() {
         return Cinsiyet;
+    }
+
+    public Register setID(int ID) {
+        this.ID = ID;
+        return this;
     }
 
     public Register setTelefon(String telefon) {

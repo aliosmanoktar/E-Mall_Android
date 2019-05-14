@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".Activity.HesapActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:focusableInTouchMode="false"
+                android:focusable="false"
+                android:id="@+id/hesap_layout.Ad"
+                android:layout_margin="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ad"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelText="Ad"
+                app:met_floatingLabelTextColor="@color/navigatonSelectColor"
+                android:editable="false"/>
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:focusableInTouchMode="false"
+                android:focusable="false"
+                android:editable="false"
+                android:id="@+id/hesap_layout.Soyad"
+                android:layout_marginEnd="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Soyadı"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelText="Soyadı"
+                app:met_floatingLabelTextColor="@color/navigatonSelectColor" />
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:focusableInTouchMode="false"
+                android:focusable="false"
+                android:id="@+id/hesap_layout.KullaniciAdi"
+                android:layout_margin="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kullanıcı Adı"
+                app:met_maxCharacters="12"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelText="Kullanıcı Adı"
+                app:met_floatingLabelTextColor="@color/navigatonSelectColor"
+                android:editable="false"/>
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:focusableInTouchMode="false"
+                android:focusable="false"
+                android:editable="false"
+                android:id="@+id/hesap_layout.Eposta"
+                android:layout_marginEnd="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="E Posta"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelText="E Posta"
+                app:met_floatingLabelTextColor="@color/navigatonSelectColor" />
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:focusableInTouchMode="true"
+                android:password="true"
+                android:id="@+id/hesap_layout.Sifre"
+                android:layout_margin="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Şifre"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelText="Şifre"
+                app:met_floatingLabelTextColor="@color/navigatonSelectColor" />
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:password="true"
+                android:focusableInTouchMode="true"
+                android:id="@+id/hesap_layout.SifreTekrar"
+                android:layout_marginEnd="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Şifre Tekrar"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelText="Şifre Tekrar"
+                app:met_floatingLabelTextColor="@color/navigatonSelectColor" />
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/hesap_layout.Telefon"
+                android:layout_margin="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Telefon"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelText="Telefon"
+                app:met_floatingLabelTextColor="@color/navigatonSelectColor" />
+
+            <Button
+                android:id="@+id/hesap_layout.Guncelle"
+                android:layout_marginEnd="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Güncelle"
+                android:layout_marginBottom="30dp"
+                />
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>
