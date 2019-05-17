@@ -44,8 +44,6 @@ public class FavorilerActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.favoriler_layout_recylerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         kullanici= Preferences.GetKullanici(getBaseContext());
-        ItemTouchHelper.SimpleCallback swipeHelper = new RecylerItemSwipeHelper(0,ItemTouchHelper.LEFT,swipeListener);
-        new ItemTouchHelper(swipeHelper).attachToRecyclerView(recyclerView);
         Button clearAll = findViewById(R.id.favoriler_layout_TumunuTemizle);
         if (kullanici!=null) {
             clearAll.setOnClickListener(ClearAllClick);
@@ -88,7 +86,7 @@ public class FavorilerActivity extends AppCompatActivity {
                 .setTitle("Uyarı")
                 .setMessage("Tüm Favori Ürünlerini Silmek İstediğinizden Eminmisiniz?")
                 .setPositiveButtonClick(() -> {
-                    new ModelDelete().execute(degiskenler.FavoriteClearAllUrl+48);
+                    new ModelDelete().execute(degiskenler.FavoriteClearAllUrl+kullanici.getID());
                     SetAdapter(new ArrayList<>());
                 })
                 .setNegativeButtonClick(() -> {
@@ -140,6 +138,8 @@ public class FavorilerActivity extends AppCompatActivity {
         favorites=new ArrayList<>(favorites);
         adapter=new adapter_favorite(favorites,favoriteItemClick);
         recyclerView.setAdapter(adapter);
+        ItemTouchHelper.SimpleCallback swipeHelper = new RecylerItemSwipeHelper(0,ItemTouchHelper.LEFT,swipeListener,adapter);
+        new ItemTouchHelper(swipeHelper).attachToRecyclerView(recyclerView);
     }
 
     private RecylerItemClick<Favorite> favoriteItemClick = item -> {

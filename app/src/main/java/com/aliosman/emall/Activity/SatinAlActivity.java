@@ -11,7 +11,9 @@ import com.aliosman.emall.Background.ModelPost;
 import com.aliosman.emall.Interface.IStepperListener;
 import com.aliosman.emall.Interface.PostInterface;
 import com.aliosman.emall.Model.Get.Sepet;
+import com.aliosman.emall.Model.Kullanici;
 import com.aliosman.emall.Model.Post.Satis;
+import com.aliosman.emall.Preferences;
 import com.aliosman.emall.R;
 import com.aliosman.emall.degiskenler;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorDialog;
@@ -29,6 +31,7 @@ public class SatinAlActivity extends AppCompatActivity {
     private String TAG = getClass().getName();
     private List<Sepet> urunler=new ArrayList<>();
     private int AdresID;
+    private Kullanici kullanici;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,7 @@ public class SatinAlActivity extends AppCompatActivity {
         layout.setListener(completeListener);
         layout.setCompleteButtonEnabled(true);
         layout.setAdapter(new adapter_stepper_pager(getSupportFragmentManager(), this,listener));
+        kullanici= Preferences.GetKullanici(getBaseContext());
     }
 
     IStepperListener listener= (position, o) -> {
@@ -53,7 +57,7 @@ public class SatinAlActivity extends AppCompatActivity {
     StepperLayout.StepperListener completeListener = new StepperLayout.StepperListener() {
         @Override
         public void onCompleted(View completeButton) {
-            new ModelPost(postInterface).execute(degiskenler.SiparisPostUrl,new Satis().setAdresID(AdresID).setItems(urunler).setKullaniciID(48).toString());
+            new ModelPost(postInterface).execute(degiskenler.SiparisPostUrl,new Satis().setAdresID(AdresID).setItems(urunler).setKullaniciID(kullanici.getID()).toString());
         }
 
         @Override

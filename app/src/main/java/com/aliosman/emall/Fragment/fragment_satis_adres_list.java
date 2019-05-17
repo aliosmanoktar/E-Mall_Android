@@ -19,6 +19,8 @@ import com.aliosman.emall.Interface.DownloadInterface;
 import com.aliosman.emall.Interface.IStepperListener;
 import com.aliosman.emall.Interface.RecylerItemClick;
 import com.aliosman.emall.Model.Get.Adres;
+import com.aliosman.emall.Model.Kullanici;
+import com.aliosman.emall.Preferences;
 import com.aliosman.emall.R;
 import com.aliosman.emall.degiskenler;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog;
@@ -32,7 +34,7 @@ public class fragment_satis_adres_list extends Fragment implements Step {
     private int AdresID=-1;
     private RecyclerView recyclerView;
     private String TAG = getClass().getName();
-    private int KullaniciID=48;
+    private Kullanici kullanici;
 
     public static fragment_satis_adres_list newInstance(IStepperListener l){
         listener=l;
@@ -45,7 +47,7 @@ public class fragment_satis_adres_list extends Fragment implements Step {
         View view = inflater.inflate(R.layout.layout_satis_adres_list,container,false);
         recyclerView=view.findViewById(R.id.layout_satis_adres_list_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        //KullaniciID=Preferences.GetKullanici(getContext()).getID();
+        kullanici= Preferences.GetKullanici(getContext());
         return view;
     }
     @Nullable
@@ -63,7 +65,7 @@ public class fragment_satis_adres_list extends Fragment implements Step {
 
     @Override
     public void onSelected() {
-        new ModelDownloadList<Adres>(Adres[].class,adresDownload).execute(degiskenler.AdressGetUrl +KullaniciID);
+        new ModelDownloadList<Adres>(Adres[].class,adresDownload).execute(degiskenler.AdressGetUrl +kullanici.getID());
     }
     private RecylerItemClick<Adres> click= item -> {
         if (item.getID()==AdresID)

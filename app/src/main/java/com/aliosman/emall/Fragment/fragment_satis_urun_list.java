@@ -26,6 +26,8 @@ import com.aliosman.emall.Interface.IStepperListener;
 import com.aliosman.emall.Interface.RecylerItemSwipeListener;
 import com.aliosman.emall.Model.Get.Sepet;
 import com.aliosman.emall.Model.Get.Urun;
+import com.aliosman.emall.Model.Kullanici;
+import com.aliosman.emall.Preferences;
 import com.aliosman.emall.R;
 import com.aliosman.emall.degiskenler;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog;
@@ -39,7 +41,7 @@ public class fragment_satis_urun_list extends Fragment implements Step {
     private static IStepperListener listener;
     private RecyclerView recyclerView;
     private adapter_sepet adapter;
-    private int KullaniciID= 48;
+    private Kullanici kullanici;
     private List<Sepet> sepets;
     private String TAG  = getClass().getName();
     private RelativeLayout rootView;
@@ -55,8 +57,7 @@ public class fragment_satis_urun_list extends Fragment implements Step {
         recyclerView=view.findViewById(R.id.layout_satis_urun_list_recycler);
         rootView=view.findViewById(R.id.layout_satis_urun_list_rootView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        ItemTouchHelper.SimpleCallback swipeHelper = new RecylerItemSwipeHelper(0,ItemTouchHelper.LEFT,swipeListener);
-        new ItemTouchHelper(swipeHelper).attachToRecyclerView(recyclerView);
+        kullanici= Preferences.GetKullanici(getContext());
         return view;
     }
 
@@ -71,7 +72,7 @@ public class fragment_satis_urun_list extends Fragment implements Step {
 
     @Override
     public void onSelected() {
-        new ModelDownloadList<Urun>(Sepet[].class,downloadInterface).execute(degiskenler.SepetGetUrl+KullaniciID);
+        new ModelDownloadList<Urun>(Sepet[].class,downloadInterface).execute(degiskenler.SepetGetUrl+kullanici.getID());
     }
 
     @Override
@@ -104,6 +105,8 @@ public class fragment_satis_urun_list extends Fragment implements Step {
         this.sepets=sepets;
         adapter = new adapter_sepet(sepets,null);
         recyclerView.setAdapter(adapter);
+        ItemTouchHelper.SimpleCallback swipeHelper = new RecylerItemSwipeHelper(0,ItemTouchHelper.LEFT,swipeListener,adapter);
+        new ItemTouchHelper(swipeHelper).attachToRecyclerView(recyclerView);
     }
     RecylerItemSwipeListener swipeListener = (viewHolder, direction, position) -> {
         Sepet item = (Sepet)viewHolder.itemView.getTag();

@@ -12,10 +12,12 @@ public class RecylerItemSwipeHelper extends ItemTouchHelper.SimpleCallback {
 
     private String TAG = getClass().getName();
     private RecylerItemSwipeListener listener;
+    private RecyclerView.Adapter adapter;
 
-    public RecylerItemSwipeHelper(int dragDirs, int swipeDirs, RecylerItemSwipeListener listener) {
+    public RecylerItemSwipeHelper(int dragDirs, int swipeDirs, RecylerItemSwipeListener listener,RecyclerView.Adapter adapter) {
         super(dragDirs, swipeDirs);
         this.listener=listener;
+        this.adapter=adapter;
     }
 
     @Override
@@ -25,15 +27,11 @@ public class RecylerItemSwipeHelper extends ItemTouchHelper.SimpleCallback {
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) {
+        int position = viewHolder.getAdapterPosition();
         if (listener!=null){
-            listener.onSwiped(viewHolder,i,viewHolder.getAdapterPosition());
-            new Handler().postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                   clearView(null,viewHolder);
-                }
-            }, 500);
+            listener.onSwiped(viewHolder,i,position);
+            if (i==ItemTouchHelper.RIGHT)
+                new Handler().postDelayed(() -> adapter.notifyItemChanged(position), 500);
         }
     }
 

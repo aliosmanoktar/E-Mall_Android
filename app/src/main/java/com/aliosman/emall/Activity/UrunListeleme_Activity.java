@@ -120,10 +120,10 @@ public class UrunListeleme_Activity extends AppCompatActivity {
         Log.e(TAG, "UrunAction: Sepet="+sepet+" item=> "+item.getID()+" "+item.getAdi() );
         if (!sepet){
             new ModelPost(postInterface).execute(degiskenler.FavoritePostUrl,new Favorite()
-                    .setKullaniciID(48).setUrunID(item.getID()).toString());
+                    .setKullaniciID(kullanici.getID()).setUrunID(item.getID()).toString());
         }else{
             new ModelPost(postInterface).execute(degiskenler.SepetPostUrl,new Sepet()
-                    .setKullaniciID(48).setUrunID(item.getID()).setAdet(1).toString());
+                    .setKullaniciID(kullanici.getID()).setUrunID(item.getID()).setAdet(1).toString());
         }
     };
 

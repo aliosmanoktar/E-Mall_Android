@@ -10,7 +10,9 @@ import android.widget.TextView;
 import com.aliosman.emall.Background.ModelDownloadList;
 import com.aliosman.emall.Interface.DownloadInterface;
 import com.aliosman.emall.Model.Get.Sepet;
+import com.aliosman.emall.Model.Kullanici;
 import com.aliosman.emall.Model.Post.Satis;
+import com.aliosman.emall.Preferences;
 import com.aliosman.emall.R;
 import com.aliosman.emall.degiskenler;
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog;
@@ -26,7 +28,7 @@ import iammert.com.expandablelib.Section;
 public class SiparisActivity extends AppCompatActivity {
 
     private ExpandableLayout expandableLayout ;
-
+    private Kullanici kullanici;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,8 @@ public class SiparisActivity extends AppCompatActivity {
         expandableLayout.setRenderer(renderer);
         expandableLayout.setExpandListener(expandListener);
         expandableLayout.setCollapseListener(collapseListener);
-        new ModelDownloadList<Sepet>(Satis[].class,satisDownload).execute(degiskenler.SipariGetUrl +"48");
+        kullanici= Preferences.GetKullanici(getBaseContext());
+        new ModelDownloadList<Sepet>(Satis[].class,satisDownload).execute(degiskenler.SipariGetUrl +kullanici.getID());
     }
 
     DownloadInterface<Satis> satisDownload = new DownloadInterface<Satis>() {

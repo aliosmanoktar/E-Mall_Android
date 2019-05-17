@@ -46,8 +46,6 @@ public class SepetActivity extends AppCompatActivity {
         RootView=findViewById(R.id.sepet_layout_RootView);
         recyclerView=findViewById(R.id.sepet_layout_recylerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-        ItemTouchHelper.SimpleCallback swipeHelper = new RecylerItemSwipeHelper(0,ItemTouchHelper.LEFT,swipeListener);
-        new ItemTouchHelper(swipeHelper).attachToRecyclerView(recyclerView);
         Button clearAll = findViewById(R.id.sepet_layout_TumunuTemizle);
         Button SatinAl = findViewById(R.id.sepet_layout_satinAl);
         if (kullanici!=null) {
@@ -91,7 +89,7 @@ public class SepetActivity extends AppCompatActivity {
                 .setTitle("Uyarı")
                 .setMessage("Tüm Sepet Ürünlerini Silmek İstediğinizden Eminmisiniz?")
                 .setPositiveButtonClick(() -> {
-                    new ModelDelete().execute(degiskenler.SepetClearAllUrl+48);
+                    new ModelDelete().execute(degiskenler.SepetClearAllUrl+kullanici.getID());
                     SetAdapter(new ArrayList<>());
                 })
                 .setNegativeButtonClick(() -> {
@@ -143,6 +141,8 @@ public class SepetActivity extends AppCompatActivity {
         sepets = new ArrayList<>(sepets);
         adapter = new adapter_sepet(sepets,SepetteItemClick);
         recyclerView.setAdapter(adapter);
+        ItemTouchHelper.SimpleCallback swipeHelper = new RecylerItemSwipeHelper(0,ItemTouchHelper.LEFT,swipeListener,adapter);
+        new ItemTouchHelper(swipeHelper).attachToRecyclerView(recyclerView);
     }
 
     private RecylerItemClick<Sepet> SepetteItemClick = item -> {

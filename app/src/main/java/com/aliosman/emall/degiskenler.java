@@ -4,7 +4,7 @@ import okhttp3.MediaType;
 
 public class degiskenler {
 
-    private static final String Url="http://192.168.42.87/api/";
+    private static final String Url="http://192.168.42.120/api/";
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     public static final String SharedNameString="Ayarlar";
     public static final String KullaniciSharedString="Kullanici";
